@@ -34,6 +34,8 @@ export const CardWrapper = styled(Paper)`
   padding-right: 12px;
   padding-bottom: 10px;
   margin-bottom: 10px;
+  min-height: 120px;
+  max-height: 180px;
 `;
 
 export const CardTitle = styled(BaseFont)`
@@ -48,6 +50,7 @@ export const CardSubtitle = styled(BaseFont)`
   color: #575757;
   font-size: 1rem;
   text-align: left;
+  height: 40px;
 `;
 
 export const CardResourceFormat = styled(BaseFont)`
@@ -55,4 +58,10 @@ export const CardResourceFormat = styled(BaseFont)`
   color: #19b1a9;
   font-weight: bold;
   margin-top: 16px;
+  position: absolute;
+`;
+
+export const CardCategory = styled(BaseFont)`
+  /* display: inline-flex;
+  margin-right: 132px; */
 `;

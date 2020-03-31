@@ -3,8 +3,10 @@ import {
   CardTitle,
   CardSubtitle,
   CardWrapper,
-  CardResourceFormat
+  CardResourceFormat,
+  CardCategory
 } from "./elements";
+import { _truncate } from "utilities";
 
 interface Props {
   title: string;
@@ -15,12 +17,23 @@ interface Props {
   pricing?: string;
 }
 
-export const Card: React.FC<Props> = ({ title, subtitle, resourceFormat }) => (
-  <CardWrapper>
-    <CardTitle>{title}</CardTitle>
-    {subtitle && <CardSubtitle>{subtitle}</CardSubtitle>}
-    {resourceFormat && (
-      <CardResourceFormat>{resourceFormat}</CardResourceFormat>
-    )}
-  </CardWrapper>
-);
+export const Card: React.FC<Props> = ({
+  title,
+  subtitle,
+  resourceFormat,
+  resourceCategory
+}) => {
+  const truncatedSubtitle = _truncate(subtitle, 60);
+  const truncatedTitle = _truncate(title, 25);
+
+  return (
+    <CardWrapper>
+      <CardTitle>{truncatedTitle}</CardTitle>
+      {subtitle && <CardSubtitle>{truncatedSubtitle}</CardSubtitle>}
+      {resourceFormat && (
+        <CardResourceFormat>{resourceFormat}</CardResourceFormat>
+      )}
+      {resourceCategory && <CardCategory>resourceCategory</CardCategory>}
+    </CardWrapper>
+  );
+};
