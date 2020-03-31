@@ -13,7 +13,6 @@ const fetchData = async () => {
   client
     .getEntries({
       order: "sys.createdAt"
-      //   content_type: contentId
     })
     .then(({ items }) => {
       let data = [];
@@ -52,7 +51,7 @@ const fetchData = async () => {
         }
       );
       console.log(data);
-      fs.writeFile("./data.json", JSON.stringify(data), err => {
+      fs.writeFile("./src/data.json", JSON.stringify(data), err => {
         if (err) throw err;
         console.log("The file has been saved!");
       });
