@@ -1,9 +1,9 @@
 import React from "react";
-import Typography from "@material-ui/core/Typography";
+import { Homepage } from "./Homepage";
 
 const App = () => (
   <div style={{ textAlign: "center", margin: "auto" }}>
-    <Typography variant="h2">Unexpected Home Learning</Typography>
+    <Homepage />
   </div>
 );
 
