@@ -30,19 +30,23 @@ const fetchData = async () => {
           if (id === "resource") {
             const {
               title,
+              subtitle,
               resourceLink,
               resourceCategory,
-              resourceFormat
+              resourceFormat,
+              pricing
             } = fields;
 
             data.push({
               dataType: id,
               title,
+              subtitle,
               resourceLink,
               resourceCategory: resourceCategory.map(
                 ({ fields: { title } }) => title
               ),
-              resourceFormat
+              resourceFormat,
+              pricing
             });
           }
           if (id === "localContact") {
@@ -50,7 +54,6 @@ const fetchData = async () => {
           }
         }
       );
-      console.log(data);
       fs.writeFile("./src/data.json", JSON.stringify(data), err => {
         if (err) throw err;
         console.log("The file has been saved!");

@@ -4,7 +4,9 @@ import { useState, useEffect } from "react";
 interface ResourceType {
   dataType: "resource";
   title: string;
-  resourceLink: string;
+  subtitle?: string;
+  pricing?: string;
+  resourceLink?: string;
   resourceCategory: string[];
   resourceFormat: string;
 }
@@ -14,8 +16,6 @@ type Resources = Omit<ResourceType, "dataType">[];
 type HookShape = () => { resources: Resources | undefined };
 
 const siteData = data;
-
-console.log(siteData);
 
 export const UseSiteData: HookShape = () => {
   const [resources, setResouces] = useState<Omit<ResourceType, "dataType">[]>();
