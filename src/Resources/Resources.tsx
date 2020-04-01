@@ -8,9 +8,11 @@ import { useFormik } from "formik";
 
 export const Resources: React.FC = () => {
   const { resources } = UseSiteData();
+  const [showSearchResults, setShowSearchResults] = useState(false);
   const [resourcesList, setResourcesList] = useState<ResourcesType | any>(
     resources
   );
+  const generalCategoryResources = [];
   const {
     handleChange,
     values: { search }
@@ -18,6 +20,8 @@ export const Resources: React.FC = () => {
     initialValues: { search: "" },
     onSubmit: () => undefined
   });
+
+
 
   useEffect(() => {
     setResourcesList(resources);
@@ -36,8 +40,10 @@ export const Resources: React.FC = () => {
           if (item.resourceFormat.includes(search)) filteredItems.push(item);
         });
       setResourcesList(filteredItems);
+      setShowSearchResults(true);
     } else {
       setResourcesList(resources);
+      setShowSearchResults(false);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [search]);
