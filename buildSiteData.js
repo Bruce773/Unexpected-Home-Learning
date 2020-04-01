@@ -16,7 +16,7 @@ const fetchData = async () => {
     })
     .then(({ items }) => {
       let data = [];
-      console.log(items);
+      console.log(`Recieved ${items.length} items from Contentful!`);
       items.forEach(
         ({
           sys: {
@@ -58,7 +58,7 @@ const fetchData = async () => {
       );
       fs.writeFile("./src/data.json", JSON.stringify(data), err => {
         if (err) throw err;
-        console.log("The file has been saved!");
+        console.log("Build file has been created!");
       });
     })
     .catch(console.error);
