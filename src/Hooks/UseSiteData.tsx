@@ -7,11 +7,11 @@ interface ResourceType {
   subtitle?: string;
   pricing?: string;
   resourceLink?: string;
-  resourceCategory: string[];
+  resourceCategory?: string[];
   resourceFormat: string;
 }
 
-type Resources = Omit<ResourceType, "dataType">[];
+export type Resources = Omit<ResourceType, "dataType">[];
 
 type HookShape = () => { resources: Resources | undefined };
 

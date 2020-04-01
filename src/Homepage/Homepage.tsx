@@ -4,7 +4,8 @@ import Grid from "@material-ui/core/Grid";
 import Paper from "@material-ui/core/Paper";
 import Container from "@material-ui/core/Container";
 import { UseSiteData } from "../Hooks";
-import { Card } from "./Card";
+import ChevronRightRoundedIcon from "@material-ui/icons/ChevronRightRounded";
+import { ResourcesSection } from "./ResourcesSection";
 
 export const Homepage: React.FC = () => {
   const { resources } = UseSiteData();
@@ -17,10 +18,10 @@ export const Homepage: React.FC = () => {
       <Container maxWidth="lg">
         <Grid container spacing={6}>
           <Grid item xs={12} md={4}>
-            <SectionHeader>Online Resources</SectionHeader>
-            {resources?.map(({ ...props }) => (
-              <Card {...props} />
-            ))}
+            <SectionHeader>
+              Resources <ChevronRightRoundedIcon />
+            </SectionHeader>
+            <ResourcesSection resources={resources} />
           </Grid>
           <Grid item xs={12} md={4}>
             <SectionHeader>

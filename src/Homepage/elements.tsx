@@ -10,7 +10,7 @@ const BaseFont = styled.div`
 
 export const MainHeader = styled(Typography)`
   && {
-    margin-top: 20px;
+    margin-top: 40px;
   }
 `;
 
@@ -61,7 +61,7 @@ export const CardResourceFormat = styled(BaseFont)`
   position: absolute;
 `;
 
-export const CardCategory = styled(BaseFont)`
-  /* display: inline-flex;
-  margin-right: 132px; */
+export const CardPricing = styled(BaseFont)<{ textLength: number }>`
+  margin-top: 16px;
+  margin-left: 10px;
 `;

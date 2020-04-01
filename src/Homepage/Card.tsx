@@ -4,7 +4,7 @@ import {
   CardSubtitle,
   CardWrapper,
   CardResourceFormat,
-  CardCategory
+  CardPricing
 } from "./elements";
 import { _truncate } from "utilities";
 
@@ -21,7 +21,8 @@ export const Card: React.FC<Props> = ({
   title,
   subtitle,
   resourceFormat,
-  resourceCategory
+  resourceCategory,
+  pricing
 }) => {
   const truncatedSubtitle = _truncate(subtitle, 60);
   const truncatedTitle = _truncate(title, 25);
@@ -33,7 +34,9 @@ export const Card: React.FC<Props> = ({
       {resourceFormat && (
         <CardResourceFormat>{resourceFormat}</CardResourceFormat>
       )}
-      {resourceCategory && <CardCategory>resourceCategory</CardCategory>}
+      {pricing && (
+        <CardPricing textLength={pricing.length}>{pricing}</CardPricing>
+      )}
     </CardWrapper>
   );
 };
