@@ -56,14 +56,14 @@ const fetchData = async () => {
           }
         }
       );
-      fs.writeFile("./src/data.json", JSON.stringify(data), err => {
-        if (err) throw err;
-        console.log("Build file has been created! 📁");
-      });
-      fs.writeFile("./build/data.json", JSON.stringify(data), err => {
-        if (err) throw err;
-        console.log("Build file has been created! 📁");
-      });
+      fs.writeFile(
+        "./src/data.js",
+        `export const data = ${JSON.stringify(data)};`,
+        err => {
+          if (err) throw err;
+          console.log("Build file has been created! 📁");
+        }
+      );
     })
     .catch(console.error);
 };

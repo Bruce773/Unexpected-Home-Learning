@@ -1,4 +1,4 @@
-import data from "data.json";
+import { data } from "data.js";
 import { useState, useEffect } from "react";
 
 interface ResourceType {
@@ -16,7 +16,7 @@ export type Resources = Omit<ResourceType, "dataType">[];
 
 type HookShape = () => { resources: Resources | undefined };
 
-const siteData = data;
+const siteData = (data as unknown) as ResourceType[];
 
 export const UseSiteData: HookShape = () => {
   const [resources, setResources] = useState<
