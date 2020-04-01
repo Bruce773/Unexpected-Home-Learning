@@ -1,16 +1,12 @@
 import styled from "styled-components";
 import Typography from "@material-ui/core/Typography";
 import Paper from "@material-ui/core/Paper";
-
-const BaseFont = styled.div`
-  font-family: "Roboto", "Helvetica", "Arial", sans-serif;
-  line-height: 1.334;
-  letter-spacing: 0em;
-`;
+import { BaseFont } from "globalStyles";
 
 export const MainHeader = styled(Typography)`
   && {
     margin-top: 40px;
+    font-size: 3rem;
   }
 `;
 
@@ -36,6 +32,7 @@ export const CardWrapper = styled(Paper)`
   margin-bottom: 10px;
   min-height: 120px;
   max-height: 180px;
+  cursor: pointer;
 `;
 
 export const CardTitle = styled(BaseFont)`
@@ -61,7 +58,45 @@ export const CardResourceFormat = styled(BaseFont)`
   position: absolute;
 `;
 
-export const CardPricing = styled(BaseFont)<{ textLength: number }>`
+export const CardPricing = styled(BaseFont)`
   margin-top: 16px;
-  margin-left: 10px;
+  margin-left: 72%;
+  letter-spacing: 0.07em;
+  font-weight: 500;
+`;
+
+export const SeeAllText = styled(BaseFont)`
+  font-size: 1.1rem;
+  display: inline;
+`;
+
+export const ModalContentWrapper = styled.div`
+  text-align: center;
+  background-color: white;
+  min-width: 65%;
+  height: 60vh;
+  position: absolute;
+  margin: auto;
+  border-radius: 6px;
+  top: 16%;
+  left: 19%;
+  overflow: scroll;
+`;
+
+export const ModalCardTitle = styled(CardTitle)`
+  & {
+    text-align: center;
+    font-size: 2rem;
+    margin-top: 20px;
+  }
+`;
+
+export const ModalCardSubtitle = styled(CardSubtitle)`
+  & {
+    text-align: center;
+    margin-top: 15px;
+    margin-bottom: 25px;
+    font-size: 1.4rem;
+    overflow-wrap: break-word;
+  }
 `;

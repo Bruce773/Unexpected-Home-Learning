@@ -1,10 +1,14 @@
 import React from "react";
-import { MainHeader, AboutSectionWrapper, SectionHeader } from "./elements";
+import {
+  MainHeader,
+  AboutSectionWrapper,
+  SectionHeader,
+  SeeAllText
+} from "./elements";
 import Grid from "@material-ui/core/Grid";
 import Paper from "@material-ui/core/Paper";
 import Container from "@material-ui/core/Container";
-import { UseSiteData } from "../Hooks";
-import ChevronRightRoundedIcon from "@material-ui/icons/ChevronRightRounded";
+import { UseSiteData } from "Hooks";
 import { ResourcesSection } from "./ResourcesSection";
 
 export const Homepage: React.FC = () => {
@@ -19,7 +23,7 @@ export const Homepage: React.FC = () => {
         <Grid container spacing={6}>
           <Grid item xs={12} md={4}>
             <SectionHeader>
-              Resources <ChevronRightRoundedIcon />
+              Resources <SeeAllText>(See all)</SeeAllText>
             </SectionHeader>
             <ResourcesSection resources={resources} />
           </Grid>

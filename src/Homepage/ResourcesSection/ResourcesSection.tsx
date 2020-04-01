@@ -1,6 +1,16 @@
 import React from "react";
-import { Resources } from "../../Hooks";
+import { Resources } from "Hooks";
 import { Card } from "../Card";
+import styled from "styled-components";
+import { BaseFont } from "globalStyles";
+
+const SectionHeder = styled(BaseFont)`
+  font-size: 1.5rem;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  border-bottom: black solid 1px;
+  padding-bottom: 10px;
+`;
 
 export const ResourcesSection: React.FC<{
   resources?: Resources;
@@ -26,15 +36,15 @@ export const ResourcesSection: React.FC<{
 
   return (
     <>
-      General
+      <SectionHeder>General</SectionHeder>
       {generalResources.map(({ ...props }) => (
         <Card {...props} />
       ))}
-      Elementary
+      <SectionHeder>Elementary School</SectionHeder>
       {elementaryResources.map(({ ...props }) => (
         <Card {...props} />
       ))}
-      Middle & High School
+      <SectionHeder>Middle & High School</SectionHeder>
       {middleAndHighResources.map(({ ...props }) => (
         <Card {...props} />
       ))}

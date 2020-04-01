@@ -34,7 +34,8 @@ const fetchData = async () => {
               resourceLink,
               resourceCategory,
               resourceFormat,
-              pricing
+              pricing,
+              embedlyHtml
             } = fields;
 
             data.push({
@@ -46,7 +47,8 @@ const fetchData = async () => {
                 ({ fields: { title } }) => title
               ),
               resourceFormat,
-              pricing
+              pricing,
+              embedlyHtml
             });
           }
           if (id === "localContact") {

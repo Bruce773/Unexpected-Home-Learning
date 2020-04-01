@@ -9,6 +9,7 @@ interface ResourceType {
   resourceLink?: string;
   resourceCategory?: string[];
   resourceFormat: string;
+  embedlyHtml?: string;
 }
 
 export type Resources = Omit<ResourceType, "dataType">[];
@@ -18,7 +19,9 @@ type HookShape = () => { resources: Resources | undefined };
 const siteData = data;
 
 export const UseSiteData: HookShape = () => {
-  const [resources, setResouces] = useState<Omit<ResourceType, "dataType">[]>();
+  const [resources, setResources] = useState<
+    Omit<ResourceType, "dataType">[]
+  >();
   let tempResources: Omit<ResourceType, "dataType">[] = [];
   let localContacts = [];
 
@@ -29,7 +32,7 @@ export const UseSiteData: HookShape = () => {
       }
     });
 
-    setResouces(tempResources);
+    setResources(tempResources);
   };
 
   useEffect(() => {
