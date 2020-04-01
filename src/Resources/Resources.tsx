@@ -3,8 +3,8 @@ import {
   UseSiteData,
   Resources as ResourcesType,
   UseSplitResources
-} from "../Hooks";
-import { Card, MainHeader } from "../Components";
+} from "Hooks";
+import { Card, MainHeader } from "Components";
 import Container from "@material-ui/core/Container";
 import Grid from "@material-ui/core/Grid";
 import TextField from "@material-ui/core/TextField";

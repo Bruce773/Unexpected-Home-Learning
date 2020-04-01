@@ -1,4 +1,4 @@
-import { data } from "../data.js";
+import { data } from "data.js";
 import { useState, useEffect } from "react";
 
 interface ResourceType {

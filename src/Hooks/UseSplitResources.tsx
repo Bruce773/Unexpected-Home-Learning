@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { Resources } from "../Hooks";
+import { Resources } from "Hooks";
 
 export const UseSplitResources = (resources?: Resources, limit?: number) => {
   const [generalResources, setGeneralResources] = useState<Resources>();

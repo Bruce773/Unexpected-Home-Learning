@@ -13,7 +13,7 @@ import {
   ModalCardCategories,
   LinkBoxWrapper
 } from "./elements";
-import { _truncate } from "../../utilities";
+import { _truncate } from "utilities";
 import Modal from "@material-ui/core/Modal";
 import Container from "@material-ui/core/Container";
 
