@@ -1,10 +1,15 @@
 import React, { useState, useEffect } from "react";
-import { UseSiteData, Resources as ResourcesType } from "Hooks";
+import {
+  UseSiteData,
+  Resources as ResourcesType,
+  UseSplitResources
+} from "Hooks";
 import { Card, MainHeader } from "Components";
 import Container from "@material-ui/core/Container";
 import Grid from "@material-ui/core/Grid";
 import TextField from "@material-ui/core/TextField";
 import { useFormik } from "formik";
+import { SectionHeader } from "./elements";
 
 export const Resources: React.FC = () => {
   const { resources } = UseSiteData();
@@ -12,7 +17,6 @@ export const Resources: React.FC = () => {
   const [resourcesList, setResourcesList] = useState<ResourcesType | any>(
     resources
   );
-  const generalCategoryResources = [];
   const {
     handleChange,
     values: { search }
@@ -20,8 +24,11 @@ export const Resources: React.FC = () => {
     initialValues: { search: "" },
     onSubmit: () => undefined
   });
-
-
+  const {
+    generalResources,
+    elementaryResources,
+    middleAndHighResources
+  } = UseSplitResources(resources);
 
   useEffect(() => {
     setResourcesList(resources);
@@ -62,17 +69,46 @@ export const Resources: React.FC = () => {
         variant="outlined"
       />
       <Container maxWidth="md">
-        <Grid container spacing={4}>
-          {resourcesList !== undefined &&
-          Array.isArray(resourcesList) &&
-          resourcesList.length
-            ? resourcesList.map(({ ...props }) => (
+        {showSearchResults ? (
+          <Grid container spacing={4}>
+            {resourcesList !== undefined &&
+            Array.isArray(resourcesList) &&
+            resourcesList.length
+              ? resourcesList.map(({ ...props }) => (
+                  <Grid item xs={12} md={6}>
+                    <Card {...props} />
+                  </Grid>
+                ))
+              : "No results"}
+          </Grid>
+        ) : (
+          <>
+            <SectionHeader>General</SectionHeader>
+            <Grid container spacing={4}>
+              {generalResources?.map(({ ...props }) => (
                 <Grid item xs={12} md={6}>
                   <Card {...props} />
                 </Grid>
-              ))
-            : "No results"}
-        </Grid>
+              ))}
+            </Grid>
+            <SectionHeader>Elementary School</SectionHeader>
+            <Grid container spacing={4}>
+              {elementaryResources?.map(({ ...props }) => (
+                <Grid item xs={12} md={6}>
+                  <Card {...props} />
+                </Grid>
+              ))}
+            </Grid>
+            <SectionHeader>Middle/High School</SectionHeader>
+            <Grid container spacing={4}>
+              {middleAndHighResources?.map(({ ...props }) => (
+                <Grid item xs={12} md={6}>
+                  <Card {...props} />
+                </Grid>
+              ))}
+            </Grid>
+          </>
+        )}
       </Container>
     </>
   );

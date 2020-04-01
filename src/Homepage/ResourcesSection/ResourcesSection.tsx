@@ -19,7 +19,7 @@ export const ResourcesSection: React.FC<{
     generalResources,
     elementaryResources,
     middleAndHighResources
-  } = UseSplitResources(resources);
+  } = UseSplitResources(resources, 3);
 
   return (
     <>

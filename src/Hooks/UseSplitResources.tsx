@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { Resources } from "Hooks";
 
-export const UseSplitResources = (resources?: Resources) => {
+export const UseSplitResources = (resources?: Resources, limit?: number) => {
   const [generalResources, setGeneralResources] = useState<Resources>();
   const [elementaryResources, setEmentaryResources] = useState<Resources>();
   const [middleAndHighResources, setMiddleAndHighResources] = useState<
@@ -17,15 +17,21 @@ export const UseSplitResources = (resources?: Resources) => {
     resources?.forEach(item => {
       if (item.resourceCategory) {
         const category = item.resourceCategory[0];
-        if (category === "General" && tempGeneralResources.length < 3) {
+        if (
+          category === "General" &&
+          (limit ? tempGeneralResources.length < limit : true)
+        ) {
           tempGeneralResources.push(item);
         }
-        if (category === "Elementary" && tempElementaryResources.length < 3) {
+        if (
+          category === "Elementary" &&
+          (limit ? tempElementaryResources.length < limit : true)
+        ) {
           tempElementaryResources.push(item);
         }
         if (
           category === "Middle/High" &&
-          tempMiddleAndHighResources.length < 3
+          (limit ? tempMiddleAndHighResources.length < limit : true)
         ) {
           tempMiddleAndHighResources.push(item);
         }
@@ -38,7 +44,7 @@ export const UseSplitResources = (resources?: Resources) => {
 
   useEffect(() => {
     buildResourceLists();
-  }, [buildResourceLists]);
+  }, [resources]);
 
   return { generalResources, elementaryResources, middleAndHighResources };
 };
