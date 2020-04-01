@@ -60,9 +60,10 @@ export const CardResourceFormat = styled(BaseFont)`
 
 export const CardPricing = styled(BaseFont)`
   margin-top: 16px;
-  margin-left: 72%;
+  margin-left: 66%;
   letter-spacing: 0.07em;
   font-weight: 500;
+  text-transform: uppercase;
 `;
 
 export const SeeAllText = styled(BaseFont)`
@@ -74,11 +75,11 @@ export const ModalContentWrapper = styled.div`
   text-align: center;
   background-color: white;
   min-width: 65%;
-  height: 60vh;
+  height: 80vh;
   position: absolute;
   margin: auto;
   border-radius: 6px;
-  top: 16%;
+  top: 10%;
   left: 19%;
   overflow: scroll;
 `;
@@ -99,4 +100,33 @@ export const ModalCardSubtitle = styled(CardSubtitle)`
     font-size: 1.4rem;
     overflow-wrap: break-word;
   }
+`;
+
+export const ModalCardPricing = styled(CardPricing)`
+  & {
+    display: inline;
+    margin-right: 30px;
+    margin-left: 0px;
+  }
+`;
+
+export const ModalCardResourceFormat = styled(CardResourceFormat)`
+  & {
+    display: inline;
+    position: relative;
+    margin-right: 30px;
+  }
+`;
+
+export const ModalCardCategories = styled(BaseFont)`
+  display: inline;
+  color: #00000094;
+  font-weight: bold;
+  letter-spacing: 1.3px;
+`;
+
+export const LinkBoxWrapper = styled(Paper)`
+  width: fit-content;
+  padding: 20px;
+  margin: auto;
 `;
