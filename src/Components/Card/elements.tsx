@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import Paper from "@material-ui/core/Paper";
-import { BaseFont } from "globalStyles";
+import { BaseFont } from "../../globalStyles";
 
 export const CardWrapper = styled(Paper)`
   padding-top: 8px;

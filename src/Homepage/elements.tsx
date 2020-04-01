@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { BaseFont } from "globalStyles";
+import { BaseFont } from "../globalStyles";
 
 export const AboutSectionWrapper = styled.div`
   padding-top: 1px;

@@ -1,8 +1,8 @@
 import React from "react";
-import { Resources, UseSplitResources } from "Hooks";
-import { Card } from "Components";
+import { Resources, UseSplitResources } from "../../Hooks";
+import { Card } from "../../Components";
 import styled from "styled-components";
-import { BaseFont } from "globalStyles";
+import { BaseFont } from "../../globalStyles";
 
 const SectionHeder = styled(BaseFont)`
   font-size: 1.5rem;
