@@ -6,6 +6,7 @@ import Container from "@material-ui/core/Container";
 import { UseSiteData } from "Hooks";
 import { ResourcesSection } from "./ResourcesSection";
 import { MainHeader } from "Components";
+import { Link } from "react-router-dom";
 
 export const Homepage: React.FC = () => {
   const { resources } = UseSiteData();
@@ -19,7 +20,10 @@ export const Homepage: React.FC = () => {
         <Grid container spacing={6}>
           <Grid item xs={12} md={4}>
             <SectionHeader>
-              Resources <SeeAllText>(See all)</SeeAllText>
+              Resources{" "}
+              <Link to="/resources">
+                <SeeAllText>(See all)</SeeAllText>
+              </Link>
             </SectionHeader>
             <ResourcesSection resources={resources} />
           </Grid>

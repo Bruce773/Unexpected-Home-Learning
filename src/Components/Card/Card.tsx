@@ -18,7 +18,7 @@ import Modal from "@material-ui/core/Modal";
 import Container from "@material-ui/core/Container";
 
 interface Props {
-  title: string;
+  title?: string;
   resourceLink?: string;
   resourceCategory?: string[];
   resourceFormat?: string;
@@ -68,14 +68,29 @@ export const Card: React.FC<Props> = ({
                 </ModalCardCategories>
               </div>
             </div>
-            <ModalCardPricing>Link: </ModalCardPricing>
-            <a href={resourceLink} rel="noopener noreferrer" target="_blank">
-              <LinkBoxWrapper>
-                {embedlyHtml && (
-                  <div dangerouslySetInnerHTML={{ __html: embedlyHtml }} />
-                )}
-              </LinkBoxWrapper>
-            </a>
+            {resourceLink ? (
+              <>
+                <ModalCardPricing>Link: </ModalCardPricing>
+                <a
+                  href={resourceLink}
+                  rel="noopener noreferrer"
+                  target="_blank"
+                >
+                  <LinkBoxWrapper>
+                    {embedlyHtml && (
+                      <div dangerouslySetInnerHTML={{ __html: embedlyHtml }} />
+                    )}
+                  </LinkBoxWrapper>
+                </a>
+              </>
+            ) : (
+              <>
+                <ModalCardSubtitle>
+                  Find this resource by Googling:{" "}
+                  <ModalCardTitle>{title}</ModalCardTitle>
+                </ModalCardSubtitle>
+              </>
+            )}
           </Container>
         </ModalContentWrapper>
       </Modal>
