@@ -16,7 +16,6 @@ import {
 import { _truncate } from "utilities";
 import Modal from "@material-ui/core/Modal";
 import Container from "@material-ui/core/Container";
-import Paper from "@material-ui/core/Paper";
 
 interface Props {
   title: string;
