@@ -44,6 +44,7 @@ export const UseSplitResources = (resources?: Resources, limit?: number) => {
 
   useEffect(() => {
     buildResourceLists();
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [resources]);
 
   return { generalResources, elementaryResources, middleAndHighResources };
