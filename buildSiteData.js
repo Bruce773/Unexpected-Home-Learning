@@ -60,6 +60,10 @@ const fetchData = async () => {
         if (err) throw err;
         console.log("Build file has been created! 📁");
       });
+      fs.writeFile("./build/data.json", JSON.stringify(data), err => {
+        if (err) throw err;
+        console.log("Build file has been created! 📁");
+      });
     })
     .catch(console.error);
 };
