@@ -1,6 +1,6 @@
 import React from "react";
 import { Resources } from "Hooks";
-import { Card } from "../Card";
+import { Card } from "Components";
 import styled from "styled-components";
 import { BaseFont } from "globalStyles";
 

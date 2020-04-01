@@ -1,15 +1,11 @@
 import React from "react";
-import {
-  MainHeader,
-  AboutSectionWrapper,
-  SectionHeader,
-  SeeAllText
-} from "./elements";
+import { AboutSectionWrapper, SectionHeader, SeeAllText } from "./elements";
 import Grid from "@material-ui/core/Grid";
 import Paper from "@material-ui/core/Paper";
 import Container from "@material-ui/core/Container";
 import { UseSiteData } from "Hooks";
 import { ResourcesSection } from "./ResourcesSection";
+import { MainHeader } from "Components";
 
 export const Homepage: React.FC = () => {
   const { resources } = UseSiteData();
