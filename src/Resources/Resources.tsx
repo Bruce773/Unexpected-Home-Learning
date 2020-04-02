@@ -14,6 +14,11 @@ import Button from "@material-ui/core/Button";
 import ArrowBackIcon from "@material-ui/icons/ArrowBack";
 import Paper from "@material-ui/core/Paper";
 import { Link } from "globalStyles";
+import ExpansionPanel from "@material-ui/core/ExpansionPanel";
+import ExpansionPanelDetails from "@material-ui/core/ExpansionPanelDetails";
+import ExpansionPanelSummary from "@material-ui/core/ExpansionPanelSummary";
+import ArrowDropDownIcon from "@material-ui/icons/ArrowDropDown";
+import ArrowDropUpIcon from "@material-ui/icons/ArrowDropUp";
 
 export const Resources: React.FC = () => {
   const { resources } = UseSiteData();
@@ -21,6 +26,9 @@ export const Resources: React.FC = () => {
   const [resourcesList, setResourcesList] = useState<ResourcesType | any>(
     resources
   );
+  const [sectionOneDown, setSectionOneDown] = useState(false);
+  const [sectionTwoDown, setSectionTwoDown] = useState(false);
+  const [sectionThreeDown, setSectionThreeDown] = useState(false);
   const {
     handleChange,
     values: { search }
@@ -95,29 +103,65 @@ export const Resources: React.FC = () => {
         ) : (
           <>
             <SectionHeader>General</SectionHeader>
-            <Grid container spacing={4}>
-              {generalResources?.map(({ ...props }) => (
-                <Grid item xs={12} md={6}>
-                  <Card {...props} />
+            <ExpansionPanel onChange={() => setSectionOneDown(!sectionOneDown)}>
+              <ExpansionPanelSummary>
+                <Button variant="text">
+                  General resources{" "}
+                  {sectionOneDown ? <ArrowDropUpIcon /> : <ArrowDropDownIcon />}
+                </Button>
+              </ExpansionPanelSummary>
+              <ExpansionPanelDetails>
+                <Grid container spacing={4}>
+                  {generalResources?.map(({ ...props }) => (
+                    <Grid item xs={12} md={6}>
+                      <Card {...props} />
+                    </Grid>
+                  ))}
                 </Grid>
-              ))}
-            </Grid>
+              </ExpansionPanelDetails>
+            </ExpansionPanel>
             <SectionHeader>Elementary School</SectionHeader>
-            <Grid container spacing={4}>
-              {elementaryResources?.map(({ ...props }) => (
-                <Grid item xs={12} md={6}>
-                  <Card {...props} />
+            <ExpansionPanel onChange={() => setSectionTwoDown(!sectionTwoDown)}>
+              <ExpansionPanelSummary>
+                <Button variant="text">
+                  Elementary School resources{" "}
+                  {sectionTwoDown ? <ArrowDropUpIcon /> : <ArrowDropDownIcon />}
+                </Button>
+              </ExpansionPanelSummary>
+              <ExpansionPanelDetails>
+                <Grid container spacing={4}>
+                  {elementaryResources?.map(({ ...props }) => (
+                    <Grid item xs={12} md={6}>
+                      <Card {...props} />
+                    </Grid>
+                  ))}
                 </Grid>
-              ))}
-            </Grid>
+              </ExpansionPanelDetails>
+            </ExpansionPanel>
             <SectionHeader>Middle/High School</SectionHeader>
-            <Grid container spacing={4}>
-              {middleAndHighResources?.map(({ ...props }) => (
-                <Grid item xs={12} md={6}>
-                  <Card {...props} />
+            <ExpansionPanel
+              onChange={() => setSectionThreeDown(!sectionThreeDown)}
+            >
+              <ExpansionPanelSummary>
+                <Button variant="text">
+                  Middle/High School resources{" "}
+                  {sectionThreeDown ? (
+                    <ArrowDropUpIcon />
+                  ) : (
+                    <ArrowDropDownIcon />
+                  )}
+                </Button>
+              </ExpansionPanelSummary>
+              <ExpansionPanelDetails>
+                <Grid container spacing={4}>
+                  {middleAndHighResources?.map(({ ...props }) => (
+                    <Grid item xs={12} md={6}>
+                      <Card {...props} />
+                    </Grid>
+                  ))}
                 </Grid>
-              ))}
-            </Grid>
+              </ExpansionPanelDetails>
+            </ExpansionPanel>
           </>
         )}
       </Container>
