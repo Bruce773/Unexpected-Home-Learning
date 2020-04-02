@@ -7,6 +7,7 @@ import {
 } from "Components/CardElements";
 import Modal from "@material-ui/core/Modal";
 import Container from "@material-ui/core/Container";
+import { AboutContact } from "./AboutContact";
 
 interface Props {
   name?: string;
@@ -30,6 +31,7 @@ export const LocalContactsCard: React.FC<Props> = ({
         <ModalContentWrapper>
           <Container maxWidth="md">
             <ModalCardTitle>{name}</ModalCardTitle>
+            <AboutContact content={content} />
           </Container>
         </ModalContentWrapper>
       </Modal>
