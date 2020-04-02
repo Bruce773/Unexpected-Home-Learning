@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import Paper from "@material-ui/core/Paper";
-import { BaseFont } from "globalStyles";
+import { BaseFont, tealGreen } from "globalStyles";
 
 export const CardWrapper = styled(Paper)`
   padding-top: 8px;
@@ -30,7 +30,7 @@ export const CardSubtitle = styled(BaseFont)`
 
 export const CardResourceFormat = styled(BaseFont)`
   text-align: left;
-  color: #19b1a9;
+  color: ${tealGreen};
   font-weight: bold;
   margin-top: 16px;
   position: absolute;

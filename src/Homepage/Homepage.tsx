@@ -6,7 +6,9 @@ import Container from "@material-ui/core/Container";
 import { UseSiteData } from "Hooks";
 import { ResourcesSection } from "./ResourcesSection";
 import { MainHeader } from "Components";
-import { Link } from "react-router-dom";
+import { Link, tealGreen } from "globalStyles";
+import ChevronRightIcon from "@material-ui/icons/ChevronRight";
+import Button from "@material-ui/core/Button";
 
 export const Homepage: React.FC = () => {
   const { resources } = UseSiteData();
@@ -20,9 +22,13 @@ export const Homepage: React.FC = () => {
         <Grid container spacing={6}>
           <Grid item xs={12} md={4}>
             <SectionHeader>
-              Resources{" "}
+              Resources
               <Link to="/resources">
-                <SeeAllText>(See all)</SeeAllText>
+                <div style={{ color: tealGreen, display: "inline" }}>
+                  <Button variant="text" color="inherit">
+                    <SeeAllText>(See all)</SeeAllText> <ChevronRightIcon />
+                  </Button>
+                </div>
               </Link>
             </SectionHeader>
             <ResourcesSection resources={resources} />

@@ -1,5 +1,5 @@
 import React from "react";
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import { Homepage } from "./Homepage";
 import ScrollToTop from "react-router-scroll-top";
 import { Resources } from "Resources";

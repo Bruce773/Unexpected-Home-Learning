@@ -16,7 +16,6 @@ export const SectionHeader = styled(BaseFont)`
 `;
 
 export const SeeAllText = styled(BaseFont)`
-  font-size: 1.1rem;
+  font-size: 1.2rem;
   display: inline;
 `;
-

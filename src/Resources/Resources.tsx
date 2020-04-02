@@ -10,6 +10,10 @@ import Grid from "@material-ui/core/Grid";
 import TextField from "@material-ui/core/TextField";
 import { useFormik } from "formik";
 import { SectionHeader } from "./elements";
+import Button from "@material-ui/core/Button";
+import ArrowBackIcon from "@material-ui/icons/ArrowBack";
+import Paper from "@material-ui/core/Paper";
+import { Link } from "globalStyles";
 
 export const Resources: React.FC = () => {
   const { resources } = UseSiteData();
@@ -57,6 +61,13 @@ export const Resources: React.FC = () => {
 
   return (
     <>
+      <Link to="/">
+        <Paper style={{ position: "fixed", top: "0px", marginLeft: "35px" }}>
+          <Button variant="text">
+            <ArrowBackIcon /> Home
+          </Button>
+        </Paper>
+      </Link>
       <MainHeader style={{ marginBottom: "60px" }} variant="h2">
         Unexpected Home Learning
       </MainHeader>
