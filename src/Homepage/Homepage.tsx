@@ -70,7 +70,9 @@ export const Homepage: React.FC = () => (
         </Grid>
         <Grid item xs={12} md={4}>
           <SectionHeader>Parent-To-Parent</SectionHeader>
-          <Paper>Stuff</Paper>
+          <Paper>
+            <AboutSectionText>Coming soon...</AboutSectionText>
+          </Paper>
         </Grid>
       </Grid>
     </Container>
