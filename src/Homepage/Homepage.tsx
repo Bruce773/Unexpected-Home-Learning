@@ -36,7 +36,7 @@ export const Homepage: React.FC = () => (
         </AboutSectionHeadingText>
         <AboutSectionText>
           Absolutely nothing! Unexpected Home Learning is free for anyone to
-          use! Some of the resources we provide links to might be subscribtion
+          use! Some of the resources we provide links to might be subscription
           based, but we provide plenty of free options if you're on a budget!
         </AboutSectionText>
         <AboutSectionHeadingText>What do you offer?</AboutSectionHeadingText>
