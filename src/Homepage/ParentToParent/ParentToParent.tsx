@@ -18,7 +18,7 @@ const LinkText = styled(BaseFont)`
   }
 `;
 
-export const ParentToParentSection: React.FC = () => {
+export const ParentToParent: React.FC = () => {
   const data = [
     {
       name: `WCPA Homeschool Group`,
