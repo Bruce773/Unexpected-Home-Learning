@@ -16,25 +16,26 @@ export const UseSplitResources = (resources?: Resources, limit?: number) => {
 
     resources?.forEach(item => {
       if (item.resourceCategory) {
-        const category = item.resourceCategory[0];
-        if (
-          category === "General" &&
-          (limit ? tempGeneralResources.length < limit : true)
-        ) {
-          tempGeneralResources.push(item);
-        }
-        if (
-          category === "Elementary" &&
-          (limit ? tempElementaryResources.length < limit : true)
-        ) {
-          tempElementaryResources.push(item);
-        }
-        if (
-          category === "Middle/High" &&
-          (limit ? tempMiddleAndHighResources.length < limit : true)
-        ) {
-          tempMiddleAndHighResources.push(item);
-        }
+        item.resourceCategory.forEach(category => {
+          if (
+            category === "General" &&
+            (limit ? tempGeneralResources.length < limit : true)
+          ) {
+            tempGeneralResources.push(item);
+          }
+          if (
+            category === "Elementary" &&
+            (limit ? tempElementaryResources.length < limit : true)
+          ) {
+            tempElementaryResources.push(item);
+          }
+          if (
+            category === "Middle/High" &&
+            (limit ? tempMiddleAndHighResources.length < limit : true)
+          ) {
+            tempMiddleAndHighResources.push(item);
+          }
+        });
       }
     });
     setGeneralResources(tempGeneralResources);
@@ -44,7 +45,7 @@ export const UseSplitResources = (resources?: Resources, limit?: number) => {
 
   useEffect(() => {
     buildResourceLists();
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [resources]);
 
   return { generalResources, elementaryResources, middleAndHighResources };
