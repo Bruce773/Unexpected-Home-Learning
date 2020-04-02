@@ -30,7 +30,7 @@ export const LocalContactSection: React.FC = () => {
           <>
             <Paragraph>
               **We're looking for people willing to teach. Tutors are especially
-              welcome! If you tutor math, reading, history, and language (ie.
+              welcome! If you tutor math, reading, history, any language (ie.
               Spanish) or teach music, please reach out to us!**
             </Paragraph>
             <Header>Contact Bruce Johnson</Header>
