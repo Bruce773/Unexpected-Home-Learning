@@ -102,4 +102,5 @@ export const LinkBoxWrapper = styled(Paper)`
   width: fit-content;
   padding: 20px;
   margin: auto;
+  margin-bottom: 30px;
 `;
