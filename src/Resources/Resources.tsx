@@ -75,7 +75,7 @@ export const Resources: React.FC = () => {
         name="search"
         onChange={handleChange}
         value={search}
-        style={{ marginBottom: "20px", width: "460px" }}
+        style={{ marginBottom: "20px", width: "380px" }}
         label="Find a resource"
         variant="outlined"
       />

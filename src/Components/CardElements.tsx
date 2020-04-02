@@ -44,7 +44,7 @@ export const CardPricing = styled(BaseFont)`
   text-transform: uppercase;
 `;
 
-export const ModalContentWrapper = styled.div`
+export const ModalContentWrapper = styled.div<{ paddingLeft: boolean }>`
   text-align: center;
   background-color: white;
   min-width: 65%;
@@ -53,7 +53,7 @@ export const ModalContentWrapper = styled.div`
   margin: auto;
   border-radius: 6px;
   top: 10%;
-  left: 19%;
+  ${({ paddingLeft }) => paddingLeft && "left: 19%;"}
   overflow: scroll;
 `;
 

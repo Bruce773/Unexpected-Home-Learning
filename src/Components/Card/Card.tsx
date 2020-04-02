@@ -16,6 +16,7 @@ import {
 import { _truncate } from "utilities";
 import Modal from "@material-ui/core/Modal";
 import Container from "@material-ui/core/Container";
+import useMediaQuery from "@material-ui/core/useMediaQuery";
 
 interface Props {
   title?: string;
@@ -39,6 +40,7 @@ export const Card: React.FC<Props> = ({
   const truncatedSubtitle = _truncate(subtitle, 60);
   const truncatedTitle = _truncate(title, 25);
   const [modalIsOpen, setModalIsOpen] = useState(false);
+  const paddingLeft = useMediaQuery("(min-width:600px)");
 
   return (
     <>
@@ -51,7 +53,7 @@ export const Card: React.FC<Props> = ({
         {pricing && <CardPricing>{pricing}</CardPricing>}
       </CardWrapper>
       <Modal open={modalIsOpen} onClose={() => setModalIsOpen(false)}>
-        <ModalContentWrapper>
+        <ModalContentWrapper paddingLeft={paddingLeft}>
           <Container maxWidth="md">
             <ModalCardTitle>{title}</ModalCardTitle>
             <ModalCardSubtitle>{subtitle}</ModalCardSubtitle>
