@@ -15,19 +15,21 @@ interface Props {
   content?: any[];
   areaOfExpertise?: string;
   data?: any;
+  hasBorder?: boolean;
 }
 
 export const LocalContactsCard: React.FC<Props> = ({
   name,
   content,
   areaOfExpertise,
-  data
+  data,
+  hasBorder
 }) => {
   const paddingLeft = useMediaQuery("(min-width:600px)");
   const [modalIsOpen, setModalIsOpen] = useState(false);
   return (
     <>
-      <CardWrapper onClick={() => setModalIsOpen(true)}>
+      <CardWrapper hasBorder={hasBorder} onClick={() => setModalIsOpen(true)}>
         <ModalCardTitle>{name}</ModalCardTitle>
         <CardLocalContactFormat>{areaOfExpertise}</CardLocalContactFormat>
       </CardWrapper>

@@ -2,7 +2,7 @@ import styled from "styled-components";
 import Paper from "@material-ui/core/Paper";
 import { BaseFont, tealGreen } from "globalStyles";
 
-export const CardWrapper = styled(Paper)`
+export const CardWrapper = styled(Paper)<{ hasBorder?: boolean }>`
   padding-top: 8px;
   padding-left: 12px;
   padding-right: 12px;
@@ -10,6 +10,7 @@ export const CardWrapper = styled(Paper)`
   margin-bottom: 10px;
   min-height: 120px;
   max-height: 180px;
+  ${({ hasBorder }) => hasBorder && `border: solid ${tealGreen} 2px;`}
   cursor: pointer;
 `;
 
