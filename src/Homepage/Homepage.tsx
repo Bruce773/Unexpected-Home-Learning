@@ -16,6 +16,7 @@ import { Link, tealGreen } from "globalStyles";
 import ChevronRightIcon from "@material-ui/icons/ChevronRight";
 import Button from "@material-ui/core/Button";
 import { LocalContactSection } from "./LocalContactsSection";
+import { ParentToParentSection } from "./ParentToParentSection";
 
 export const Homepage: React.FC = () => (
   <>
@@ -70,8 +71,9 @@ export const Homepage: React.FC = () => (
         </Grid>
         <Grid item xs={12} md={4}>
           <SectionHeader>Parent-To-Parent</SectionHeader>
+          <ParentToParentSection />
           <Paper>
-            <AboutSectionText>Coming soon...</AboutSectionText>
+            <AboutSectionText>Live commenting coming soon...</AboutSectionText>
           </Paper>
         </Grid>
       </Grid>

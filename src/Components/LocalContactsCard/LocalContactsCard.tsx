@@ -14,12 +14,14 @@ interface Props {
   name?: string;
   content?: any[];
   areaOfExpertise?: string;
+  data?: any;
 }
 
 export const LocalContactsCard: React.FC<Props> = ({
   name,
   content,
-  areaOfExpertise
+  areaOfExpertise,
+  data
 }) => {
   const paddingLeft = useMediaQuery("(min-width:600px)");
   const [modalIsOpen, setModalIsOpen] = useState(false);
@@ -34,6 +36,7 @@ export const LocalContactsCard: React.FC<Props> = ({
           <Container maxWidth="md">
             <ModalCardTitle>{name}</ModalCardTitle>
             <AboutContact content={content} />
+            {data}
           </Container>
         </ModalContentWrapper>
       </Modal>
