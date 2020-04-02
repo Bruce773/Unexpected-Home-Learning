@@ -104,3 +104,11 @@ export const LinkBoxWrapper = styled(Paper)`
   margin: auto;
   margin-bottom: 30px;
 `;
+
+export const CardLocalContactFormat = styled(CardResourceFormat)`
+  & {
+    font-size: 1.4rem;
+    text-align: center;
+    position: relative;
+  }
+`;

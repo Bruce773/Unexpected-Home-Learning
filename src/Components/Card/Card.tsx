@@ -12,7 +12,7 @@ import {
   ModalCardResourceFormat,
   ModalCardCategories,
   LinkBoxWrapper
-} from "./elements";
+} from "Components/CardElements";
 import { _truncate } from "utilities";
 import Modal from "@material-ui/core/Modal";
 import Container from "@material-ui/core/Container";
