@@ -1,5 +1,5 @@
 import React from "react";
-import { Resources, UseSplitResources } from "Hooks";
+import { UseSplitResources, UseSiteData } from "Hooks";
 import { Card } from "Components";
 import styled from "styled-components";
 import { BaseFont } from "globalStyles";
@@ -12,9 +12,9 @@ const SectionHeder = styled(BaseFont)`
   padding-bottom: 10px;
 `;
 
-export const ResourcesSection: React.FC<{
-  resources?: Resources;
-}> = ({ resources }) => {
+export const ResourcesSection: React.FC = () => {
+  const { resources } = UseSiteData();
+
   const {
     generalResources,
     elementaryResources,

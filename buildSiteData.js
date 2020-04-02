@@ -52,7 +52,18 @@ const fetchData = async () => {
             });
           }
           if (id === "localContact") {
-            console.log(fields);
+            const {
+              name,
+              info: { content },
+              areaOfExpertise
+            } = fields;
+
+            data.push({
+              dataType: id,
+              name,
+              content,
+              areaOfExpertise
+            });
           }
         }
       );
