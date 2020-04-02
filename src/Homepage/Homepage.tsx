@@ -16,7 +16,7 @@ import { Link, tealGreen } from "globalStyles";
 import ChevronRightIcon from "@material-ui/icons/ChevronRight";
 import Button from "@material-ui/core/Button";
 import { LocalContactSection } from "./LocalContactsSection";
-import { ParentToParentSection } from "./ParentToParentSection";
+import { ParentToParentSection } from "./ParentToParent";
 
 export const Homepage: React.FC = () => (
   <>
