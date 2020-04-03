@@ -26,7 +26,7 @@ export const ParentToParent: React.FC = () => {
         <>
           <Text>
             The owner of this group, Jeanne Arnold, has given us permission to
-            share this FaceBook group with anyone who needs help!
+            share this Facebook group with anyone who needs help!
           </Text>
           <a
             style={{ textDecoration: "none" }}
@@ -34,14 +34,14 @@ export const ParentToParent: React.FC = () => {
             rel="noopener noreferrer"
             href="https://www.facebook.com/WCPAHomeschoolGroup/"
           >
-            <LinkText>FaceBook Group</LinkText>
+            <LinkText>Facebook Group</LinkText>
           </a>
           <Text>
             Don't hesitate to reach out with any questions you might have!
           </Text>
         </>
       ),
-      areaOfExpertise: "FaceBook Group"
+      areaOfExpertise: "Facebook Group"
     },
     {
       name: `The Learning Space`,
@@ -57,14 +57,14 @@ export const ParentToParent: React.FC = () => {
             target="_blank"
             rel="noopener noreferrer"
           >
-            <LinkText>FaceBook Group</LinkText>
+            <LinkText>Facebook Group</LinkText>
           </a>
           <Text>
             Feel free to post your own resources or simply interact with others.
           </Text>
         </>
       ),
-      areaOfExpertise: "FaceBook Group"
+      areaOfExpertise: "Facebook Group"
     },
     {
       name: `NEPA Homeschool Teens`,
@@ -80,7 +80,7 @@ export const ParentToParent: React.FC = () => {
             rel="noopener noreferrer"
             href="https://facebook.com/groups/1267574810027621/"
           >
-            <LinkText>FaceBook Group</LinkText>
+            <LinkText>Facebook Group</LinkText>
           </a>
           <Text>
             Feel free to ask any questions you may have and post your own
@@ -88,7 +88,7 @@ export const ParentToParent: React.FC = () => {
           </Text>
         </>
       ),
-      areaOfExpertise: "FaceBook Group"
+      areaOfExpertise: "Facebook Group"
     }
   ];
   return (

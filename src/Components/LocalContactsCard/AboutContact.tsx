@@ -29,12 +29,27 @@ export const AboutContact: React.FC<{ content?: any[] }> = ({ content }) => {
           <Paragraph>
             {content.map(
               ({
+                nodeType,
                 value,
-                marks
+                marks,
+                data
               }: {
+                nodeType?: string;
                 value: string;
+                data?: { uri: string };
                 marks: { type: string }[];
               }) => {
+                if (nodeType === "hyperlink" && data) {
+                  return (
+                    <a
+                      rel="noopener noreferrer"
+                      target="_blank"
+                      href={data.uri}
+                    >
+                      {data.uri}
+                    </a>
+                  );
+                }
                 const textDecoration = marks && marks[0] && marks[0].type;
                 return (
                   <div
@@ -55,11 +70,6 @@ export const AboutContact: React.FC<{ content?: any[] }> = ({ content }) => {
     } else if (nodeType === "heading-3") {
       if (content.length === 1) {
         return <HeaderThree>{content[0].value}</HeaderThree>;
-      }
-    } else if (nodeType === "hyperlink") {
-      if (content.length === 1) {
-        console.log(content);
-        return <a href="">{content[0].value}</a>;
       }
     }
   });
