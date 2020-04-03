@@ -35,7 +35,7 @@ export const AboutContact: React.FC<{ content?: any[] }> = ({ content }) => {
                 value: string;
                 marks: { type: string }[];
               }) => {
-                const textDecoration = marks[0] && marks[0].type;
+                const textDecoration = marks && marks[0] && marks[0].type;
                 return (
                   <div
                     style={
@@ -55,6 +55,11 @@ export const AboutContact: React.FC<{ content?: any[] }> = ({ content }) => {
     } else if (nodeType === "heading-3") {
       if (content.length === 1) {
         return <HeaderThree>{content[0].value}</HeaderThree>;
+      }
+    } else if (nodeType === "hyperlink") {
+      if (content.length === 1) {
+        console.log(content);
+        return <a href="">{content[0].value}</a>;
       }
     }
   });
