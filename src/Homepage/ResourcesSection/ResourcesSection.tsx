@@ -25,8 +25,6 @@ export const ResourcesSection: React.FC = () => {
 
   const isMobile = useMediaQuery("(min-width:600px)");
 
-  console.log(isMobile);
-
   const [sectionOneDown, setSectionOneDown] = useState(isMobile);
   const [sectionTwoDown, setSectionTwoDown] = useState(isMobile);
   const [sectionThreeDown, setSectionThreeDown] = useState(isMobile);

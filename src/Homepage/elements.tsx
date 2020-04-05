@@ -22,11 +22,12 @@ export const SeeAllText = styled(BaseFont)`
 `;
 
 export const AboutSectionInnerWrapper = styled(Paper)`
-  height: 40%;
-  width: 50%;
-  max-width: 640px;
+  /* height: 40%; */
+  width: 72%;
+  max-width: 700px;
   min-width: 350px;
   && {
+    height: auto;
     background-color: ${lightTealGreen};
   }
   text-align: center;
