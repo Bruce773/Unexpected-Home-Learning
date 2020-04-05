@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import {
   UseSiteData,
   Resources as ResourcesType,
-  UseSplitResources
+  UseSplitResources,
 } from "Hooks";
 import { Card, MainHeader } from "Components";
 import Container from "@material-ui/core/Container";
@@ -31,15 +31,15 @@ export const Resources: React.FC = () => {
   const [sectionThreeDown, setSectionThreeDown] = useState(false);
   const {
     handleChange,
-    values: { search }
+    values: { search },
   } = useFormik({
     initialValues: { search: "" },
-    onSubmit: () => undefined
+    onSubmit: () => undefined,
   });
   const {
     generalResources,
     elementaryResources,
-    middleAndHighResources
+    middleAndHighResources,
   } = UseSplitResources(resources);
 
   useEffect(() => {
@@ -51,9 +51,9 @@ export const Resources: React.FC = () => {
       setResourcesList([]);
       const filteredItems: any[] = [];
       resources &&
-        resources.forEach(item => {
-          const lowercasedTitle = item.title?.toLowerCase();
-          if (lowercasedTitle?.includes(search.toLowerCase()))
+        resources.forEach((item) => {
+          const lowercasedTitle = item.title.toLowerCase();
+          if (lowercasedTitle.includes(search.toLowerCase()))
             filteredItems.push(item);
           if (item.resourceCategory?.includes(search)) filteredItems.push(item);
           if (item.resourceFormat.includes(search)) filteredItems.push(item);
