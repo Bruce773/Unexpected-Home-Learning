@@ -52,8 +52,8 @@ export const Resources: React.FC = () => {
       const filteredItems: any[] = [];
       resources &&
         resources.forEach(item => {
-          const lowercasedTitle = item.title.toLowerCase();
-          if (lowercasedTitle.includes(search.toLowerCase()))
+          const lowercasedTitle = item.title?.toLowerCase();
+          if (lowercasedTitle?.includes(search.toLowerCase()))
             filteredItems.push(item);
           if (item.resourceCategory?.includes(search)) filteredItems.push(item);
           if (item.resourceFormat.includes(search)) filteredItems.push(item);

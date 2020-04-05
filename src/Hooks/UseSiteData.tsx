@@ -2,34 +2,66 @@ import { data } from "data.js";
 import { useState, useEffect } from "react";
 
 interface ResourceType {
-  dataType: "resource" | "localContact";
+  dataType: "resource";
   title: string;
-  subtitle?: string;
-  pricing?: string;
-  resourceLink?: string;
-  resourceCategory?: string[];
+  subtitle: string;
+  resourceLink: string;
+  resourceCategory: string[];
   resourceFormat: string;
-  embedlyHtml?: string;
-  name?: string;
-  content?: any[];
-  areaOfExpertise?: string;
+  pricing: string;
+  embedlyHtml: string;
+}
+
+interface LocalContactType {
+  dataType: "localContact";
+  name: string;
+  content: any[];
+  areaOfExpertise: string;
+}
+
+interface ResourceSpotlightType {
+  dataType: "resourceSpotlight";
+  buttonText?: string;
+  buttonLink?: string;
+  resourceSpotlightText?: string;
+}
+
+interface HomeschoolTipType {
+  dataType: "homeschoolTip";
+  tipText: string;
+}
+
+interface RawDataTypes {
+  resourceSpotlights?: ResourceSpotlightType[];
+  homeschoolTips?: HomeschoolTipType[];
 }
 
 export type Resources = Omit<ResourceType, "dataType">[];
+export type LocalContacts = Omit<LocalContactType, "dataType">[];
+export type ResourceSpotlights = Omit<ResourceSpotlightType, "dataType">[];
+export type HomeschoolTips = Omit<HomeschoolTipType, "dataType">[];
 
-type HookShape = () => { resources?: Resources; localContacts?: Resources };
+type HookShape = () => {
+  resources?: Resources;
+  localContacts?: LocalContacts;
+  resourceSpotlights?: ResourceSpotlights;
+};
 
-const siteData = (data as unknown) as ResourceType[];
+type SiteDataTypes = ResourceType & LocalContactType & RawDataTypes;
+
+const siteData = (data as unknown) as SiteDataTypes[];
 
 export const UseSiteData: HookShape = () => {
-  const [resources, setResources] = useState<
-    Omit<ResourceType, "dataType">[]
+  const [resources, setResources] = useState<Resources>();
+  const [localContacts, setLocalContacts] = useState<LocalContacts>();
+  const [resourceSpotlights, setResourceSpotlights] = useState<
+    ResourceSpotlights
   >();
-  const [localContacts, setLocalContacts] = useState<
-    Omit<ResourceType, "dataType">[]
-  >();
-  let tempResources: Omit<ResourceType, "dataType">[] = [];
-  let tempLocalContacts: Omit<ResourceType, "dataType">[] = [];
+  const [homeschoolTips, setHomeschoolTips] = useState<HomeschoolTips>();
+  let tempResources: Resources = [];
+  let tempLocalContacts: LocalContacts = [];
+  let tempResourceSpotlights: ResourceSpotlights = [];
+  let tempHomeschoolTips: HomeschoolTips = [];
 
   const populateResources = () => {
     siteData.forEach(({ dataType, ...rest }) => {
@@ -39,10 +71,22 @@ export const UseSiteData: HookShape = () => {
       if (dataType === "localContact") {
         tempLocalContacts.push({ ...rest });
       }
+      if (dataType === "resourceSpotlightsGroup") {
+        rest.resourceSpotlights?.forEach(({ ...resourceSpotlightData }) =>
+          tempResourceSpotlights.push({ ...resourceSpotlightData })
+        );
+      }
+      if (dataType === "homeschoolTipsGroup") {
+        rest.homeschoolTips?.forEach(({ tipText }) =>
+          tempHomeschoolTips.push({ tipText })
+        );
+      }
     });
 
     setResources(tempResources);
     setLocalContacts(tempLocalContacts);
+    setResourceSpotlights(tempResourceSpotlights);
+    setHomeschoolTips(tempHomeschoolTips);
   };
 
   useEffect(() => {
@@ -50,5 +94,5 @@ export const UseSiteData: HookShape = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  return { resources, localContacts };
+  return { resources, localContacts, resourceSpotlights, homeschoolTips };
 };
