@@ -19,15 +19,15 @@ interface LocalContactType {
   areaOfExpertise: string;
 }
 
-interface ResourceSpotlightType {
-  dataType: "resourceSpotlight";
-  buttonText?: string;
-  buttonLink?: string;
-  resourceSpotlightText?: string;
+export interface ResourceSpotlightType {
+  dataType: "Resource Spotlight";
+  buttonText: string;
+  buttonLink: string;
+  resourceSpotlightText: string;
 }
 
-interface HomeschoolTipType {
-  dataType: "homeschoolTip";
+export interface HomeschoolTipType {
+  dataType: "Homeschool Tip";
   tipText: string;
 }
 
@@ -38,13 +38,14 @@ interface RawDataTypes {
 
 export type Resources = Omit<ResourceType, "dataType">[];
 export type LocalContacts = Omit<LocalContactType, "dataType">[];
-export type ResourceSpotlights = Omit<ResourceSpotlightType, "dataType">[];
-export type HomeschoolTips = Omit<HomeschoolTipType, "dataType">[];
+export type ResourceSpotlights = ResourceSpotlightType[];
+export type HomeschoolTips = HomeschoolTipType[];
 
 type HookShape = () => {
   resources?: Resources;
   localContacts?: LocalContacts;
   resourceSpotlights?: ResourceSpotlights;
+  homeschoolTips?: HomeschoolTips;
 };
 
 type SiteDataTypes = ResourceType & LocalContactType & RawDataTypes;
@@ -73,12 +74,15 @@ export const UseSiteData: HookShape = () => {
       }
       if (dataType === "resourceSpotlightsGroup") {
         rest.resourceSpotlights?.forEach(({ ...resourceSpotlightData }) =>
-          tempResourceSpotlights.push({ ...resourceSpotlightData })
+          tempResourceSpotlights.push({
+            dataType: "Resource Spotlight",
+            ...resourceSpotlightData,
+          })
         );
       }
       if (dataType === "homeschoolTipsGroup") {
         rest.homeschoolTips?.forEach(({ tipText }) =>
-          tempHomeschoolTips.push({ tipText })
+          tempHomeschoolTips.push({ tipText, dataType: "Homeschool Tip" })
         );
       }
     });
