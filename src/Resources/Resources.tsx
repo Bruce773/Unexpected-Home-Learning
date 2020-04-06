@@ -9,7 +9,7 @@ import Container from "@material-ui/core/Container";
 import Grid from "@material-ui/core/Grid";
 import TextField from "@material-ui/core/TextField";
 import { useFormik } from "formik";
-import { SectionHeader } from "./elements";
+import { SectionHeader, SearchResultsCount } from "./elements";
 import Button from "@material-ui/core/Button";
 import ArrowBackIcon from "@material-ui/icons/ArrowBack";
 import Paper from "@material-ui/core/Paper";
@@ -103,17 +103,22 @@ export const Resources: React.FC = () => {
       />
       <Container maxWidth="md">
         {showSearchResults ? (
-          <Grid container spacing={4}>
-            {resourcesList !== undefined &&
-            Array.isArray(resourcesList) &&
-            resourcesList.length
-              ? resourcesList.map(({ ...props }) => (
-                  <Grid item xs={12} md={6}>
-                    <Card {...props} />
-                  </Grid>
-                ))
-              : "No results"}
-          </Grid>
+          <>
+            <SearchResultsCount>
+              Found {resourcesList.length} items
+            </SearchResultsCount>
+            <Grid container spacing={4}>
+              {resourcesList !== undefined &&
+              Array.isArray(resourcesList) &&
+              resourcesList.length
+                ? resourcesList.map(({ ...props }) => (
+                    <Grid item xs={12} md={6}>
+                      <Card {...props} />
+                    </Grid>
+                  ))
+                : "No results"}
+            </Grid>
+          </>
         ) : (
           <>
             <SectionHeader>General</SectionHeader>

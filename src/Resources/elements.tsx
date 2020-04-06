@@ -8,3 +8,8 @@ export const SectionHeader = styled(BaseFont)`
     margin-bottom: 20px;
   }
 `;
+
+export const SearchResultsCount = styled(BaseFont)`
+  margin: 20px;
+  font-size: 1.4rem;
+`;
