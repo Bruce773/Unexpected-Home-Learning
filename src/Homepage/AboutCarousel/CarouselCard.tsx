@@ -34,7 +34,7 @@ export const CarouselCard: React.FC = ({ dataType, ...data }: any) => {
                 rel="noopener noreferrer"
                 href={data.buttonLink}
               >
-                <StyledButton isNotMobile={isNotMobile}>
+                <StyledButton variant="outlined" isNotMobile={isNotMobile}>
                   {data.buttonText} <ArrowForwardIosIcon />
                 </StyledButton>
               </a>
@@ -50,7 +50,11 @@ export const CarouselCard: React.FC = ({ dataType, ...data }: any) => {
           rel="noopener noreferrer"
           href={data.buttonLink}
         >
-          <StyledButton marginBottom isNotMobile={isNotMobile}>
+          <StyledButton
+            variant="outlined"
+            marginBottom
+            isNotMobile={isNotMobile}
+          >
             {data.buttonText} <ArrowForwardIosIcon />
           </StyledButton>
         </a>

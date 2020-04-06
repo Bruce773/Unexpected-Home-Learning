@@ -70,7 +70,7 @@ export const StyledButton = styled(Button)<{
     margin-top: 20px;
     font-size: 1.1rem;
     text-align: left;
-    padding: 0px;
+    padding: 5px;
     ${({ isNotMobile }) =>
       !isNotMobile &&
       `
