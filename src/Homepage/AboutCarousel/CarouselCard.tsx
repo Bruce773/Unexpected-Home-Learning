@@ -44,9 +44,16 @@ export const CarouselCard: React.FC = ({ dataType, ...data }: any) => {
       </TitleSectionWrapper>
       <CarouselCardText variant="h2">{text}</CarouselCardText>
       {!isHomeSchoolTip && (
-        <StyledButton marginBottom isNotMobile={isNotMobile}>
-          {data.buttonText} <ArrowForwardIosIcon />
-        </StyledButton>
+        <a
+          style={{ textDecoration: "none" }}
+          target="_blank"
+          rel="noopener noreferrer"
+          href={data.buttonLink}
+        >
+          <StyledButton marginBottom isNotMobile={isNotMobile}>
+            {data.buttonText} <ArrowForwardIosIcon />
+          </StyledButton>
+        </a>
       )}
     </CarouselCardWrapper>
   );
