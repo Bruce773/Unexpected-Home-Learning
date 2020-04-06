@@ -4,6 +4,7 @@ import {
   SectionHeader,
   SeeAllText,
   AboutSectionText,
+  LiveCommentingText,
 } from "./elements";
 import Grid from "@material-ui/core/Grid";
 import Paper from "@material-ui/core/Paper";
@@ -54,10 +55,19 @@ export const Homepage: React.FC = () => (
         </Grid>
         <Grid item xs={12} md={4}>
           <SectionHeader>Parent-To-Parent</SectionHeader>
-          <ParentToParent />
-          <Paper>
-            <AboutSectionText>Live commenting coming soon...</AboutSectionText>
+          <Paper style={{ marginBottom: "30px", padding: "10px" }}>
+            <LiveCommentingText>
+              Live conversations with homeschooling parents:
+              <Link to="/live-comments">
+                <div style={{ color: tealGreen, display: "inline" }}>
+                  <Button variant="text" color="inherit">
+                    <SeeAllText>Live Comments</SeeAllText> <ChevronRightIcon />
+                  </Button>
+                </div>
+              </Link>
+            </LiveCommentingText>
           </Paper>
+          <ParentToParent />
         </Grid>
       </Grid>
     </Container>
