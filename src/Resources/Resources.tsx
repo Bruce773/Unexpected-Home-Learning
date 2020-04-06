@@ -52,11 +52,21 @@ export const Resources: React.FC = () => {
       const filteredItems: any[] = [];
       resources &&
         resources.forEach((item) => {
+          const lowercaseSearchTerm = search.toLowerCase();
+
           const lowercasedTitle = item.title.toLowerCase();
-          if (lowercasedTitle.includes(search.toLowerCase()))
+          const category = item.resourceCategory.join("").toLowerCase();
+          const format = item.resourceFormat.toLowerCase();
+
+          if (lowercasedTitle.includes(lowercaseSearchTerm)) {
             filteredItems.push(item);
-          if (item.resourceCategory?.includes(search)) filteredItems.push(item);
-          if (item.resourceFormat.includes(search)) filteredItems.push(item);
+          } else if (category.includes(lowercaseSearchTerm)) {
+            filteredItems.push(item);
+          } else if (format.includes(lowercaseSearchTerm)) {
+            filteredItems.push(item);
+          } else if (item.pricing.toLowerCase().includes(lowercaseSearchTerm)) {
+            filteredItems.push(item);
+          }
         });
       setResourcesList(filteredItems);
       setShowSearchResults(true);

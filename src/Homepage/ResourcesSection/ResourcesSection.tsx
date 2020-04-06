@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { UseSplitResources, UseSiteData } from "Hooks";
 import { Card } from "Components";
 import styled from "styled-components";
-import { BaseFont } from "globalStyles";
+import { BaseFont, tealGreen } from "globalStyles";
 import ExpansionPanelSummary from "@material-ui/core/ExpansionPanelSummary";
 import Button from "@material-ui/core/Button";
 import ArrowDropDownIcon from "@material-ui/icons/ArrowDropDown";
@@ -15,7 +15,7 @@ const SectionHeder = styled(BaseFont)`
     font-size: 1.5rem;
     margin-top: 20px;
     margin-bottom: 20px;
-    border-bottom: black solid 1px;
+    border-bottom: ${tealGreen} solid 2px;
     padding-bottom: 10px;
   }
 `;
