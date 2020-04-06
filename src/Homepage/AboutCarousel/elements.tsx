@@ -27,7 +27,6 @@ export const CarouselWrapper = styled.div<{ isNotMobile: boolean }>`
 
 export const CarouselCardWrapper = styled.div`
   background-color: ${lightTealGreen};
-  overflow: scroll;
   height: 575px;
   width: 100%;
   border-radius: 10px;
