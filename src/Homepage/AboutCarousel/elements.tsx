@@ -56,7 +56,6 @@ export const CarouselCardText = styled(Typography)`
     font-size: 1.7rem;
     padding: 50px;
     overflow: scroll;
-    overflow-y: scroll;
     white-space: pre-wrap;
     padding-top: 36px;
   }
