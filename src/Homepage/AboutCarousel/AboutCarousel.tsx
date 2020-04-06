@@ -39,8 +39,8 @@ export const AboutCarousel: React.FC = () => {
     <CarouselWrapper isNotMobile={isNotMobile}>
       <Carousel
         wrapAround
-        //   autoplay
-        //   autoplayInterval={5000}
+        autoplay
+        autoplayInterval={3000}
         cellSpacing={50}
         cellAlign="center"
         slidesToShow={1}
