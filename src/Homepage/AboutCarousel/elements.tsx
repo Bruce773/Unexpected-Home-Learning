@@ -13,6 +13,17 @@ export const CarouselWrapper = styled.div<{ isNotMobile: boolean }>`
     overflow: scroll;
   }
   margin-top: 110px;
+  .slider-control-bottomcenter ul {
+    background-color: ${lightTealGreen};
+    height: 23px;
+    border-radius: 10px;
+  }
+  .slider-control-centerright button {
+    border-radius: 5px;
+  }
+  .slider-control-centerleft button {
+    border-radius: 5px;
+  }
 `;
 
 export const CarouselCardWrapper = styled.div`
