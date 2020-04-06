@@ -10,7 +10,6 @@ export const CarouselWrapper = styled.div<{ isNotMobile: boolean }>`
       `margin-right: 20%;
        min-width: 45vw;
       `}
-    overflow: scroll;
   }
   margin-top: 110px;
   .slider-control-bottomcenter ul {
