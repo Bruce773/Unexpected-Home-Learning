@@ -6,13 +6,13 @@ const contentful = require("contentful");
 
 const client = contentful.createClient({
   space: process.env.CONTENTFUL_SPACE_ID,
-  accessToken: process.env.CONTENTFUL_API_KEY
+  accessToken: process.env.CONTENTFUL_API_KEY,
 });
 
 const fetchData = async () => {
   client
     .getEntries({
-      order: "sys.createdAt"
+      order: "sys.createdAt",
     })
     .then(({ items }) => {
       let data = [];
@@ -21,10 +21,10 @@ const fetchData = async () => {
         ({
           sys: {
             contentType: {
-              sys: { id }
-            }
+              sys: { id },
+            },
           },
-          fields
+          fields,
         }) => {
           if (id === "category") return;
           if (id === "resource") {
@@ -35,7 +35,7 @@ const fetchData = async () => {
               resourceCategory,
               resourceFormat,
               pricing,
-              embedlyHtml
+              embedlyHtml,
             } = fields;
 
             data.push({
@@ -48,21 +48,45 @@ const fetchData = async () => {
               ),
               resourceFormat,
               pricing,
-              embedlyHtml
+              embedlyHtml,
             });
           }
           if (id === "localContact") {
             const {
               name,
               info: { content },
-              areaOfExpertise
+              areaOfExpertise,
             } = fields;
 
             data.push({
               dataType: id,
               name,
               content,
-              areaOfExpertise
+              areaOfExpertise,
+            });
+          }
+          if (id === "resourceSpotlightsGroup") {
+            data.push({
+              dataType: id,
+              resourceSpotlights: fields.resourceSpotlights.map(
+                ({
+                  fields: { buttonText, buttonLink, resourceSpotlightText },
+                }) => ({
+                  buttonText,
+                  buttonLink,
+                  resourceSpotlightText,
+                })
+              ),
+            });
+          }
+          if (id === "homeschoolTipsGroup") {
+            data.push({
+              dataType: id,
+              homeschoolTips: fields.homeschoolTips.map(
+                ({ fields: { tipText } }) => ({
+                  tipText,
+                })
+              ),
             });
           }
         }
@@ -70,7 +94,7 @@ const fetchData = async () => {
       fs.writeFile(
         "./src/data.js",
         `export const data = ${JSON.stringify(data)};`,
-        err => {
+        (err) => {
           if (err) throw err;
           console.log("Build file has been created! 📁");
         }
