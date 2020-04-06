@@ -66,6 +66,10 @@ export const Resources: React.FC = () => {
             filteredItems.push(item);
           } else if (item.pricing.toLowerCase().includes(lowercaseSearchTerm)) {
             filteredItems.push(item);
+          } else if (
+            item.subtitle.toLowerCase().includes(lowercaseSearchTerm)
+          ) {
+            filteredItems.push(item);
           }
         });
       setResourcesList(filteredItems);
