@@ -3,7 +3,6 @@ import {
   AboutSectionWrapper,
   SectionHeader,
   SeeAllText,
-  AboutSectionText,
   LiveCommentingText,
 } from "./elements";
 import Grid from "@material-ui/core/Grid";
