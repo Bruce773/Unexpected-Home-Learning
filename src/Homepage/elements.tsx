@@ -46,3 +46,9 @@ export const AboutSectionText = styled(BaseFont)`
   font-size: 1.4rem;
   color: ${darkGrey};
 `;
+
+export const LiveCommentingText = styled(BaseFont)`
+  && {
+    font-size: 1.8rem;
+  }
+`;

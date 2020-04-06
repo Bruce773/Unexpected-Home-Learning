@@ -15,6 +15,14 @@ const SubText = styled(BaseFont)`
   }
 `;
 
+const RefreshText = styled(BaseFont)`
+  font-size: 1.2rem;
+  margin-top: 30px;
+  margin-bottom: 10px;
+  cursor: pointer;
+  text-decoration: underline;
+`;
+
 export const LiveComments: React.FC = () => (
   <>
     <Link to="/">
@@ -26,6 +34,9 @@ export const LiveComments: React.FC = () => (
     </Link>
     <MainHeader variant="h2">Unexpected Home Learning</MainHeader>
     <SubText>Share your homeschooling experience with others</SubText>
+    <RefreshText onClick={() => window.location.reload(true)}>
+      Don't see any comments? Click here to refresh
+    </RefreshText>
     <Container maxWidth="md" style={{ paddingTop: "60px" }}>
       <div id="disqus_thread"></div>
     </Container>
