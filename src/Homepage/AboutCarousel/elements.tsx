@@ -63,7 +63,10 @@ export const CarouselCardText = styled(Typography)`
   }
 `;
 
-export const StyledButton = styled(Button)<{ isNotMobile: boolean }>`
+export const StyledButton = styled(Button)<{
+  isNotMobile: boolean;
+  marginBottom?: boolean;
+}>`
   && {
     margin-left: 30px;
     margin-top: 20px;
@@ -76,5 +79,6 @@ export const StyledButton = styled(Button)<{ isNotMobile: boolean }>`
         text-align: center;
         margin-left: 0px;
     `}
+    ${({ marginBottom }) => marginBottom && "margin-bottom: 60px;"}
   }
 `;

@@ -43,6 +43,11 @@ export const CarouselCard: React.FC = ({ dataType, ...data }: any) => {
         </Grid>
       </TitleSectionWrapper>
       <CarouselCardText variant="h2">{text}</CarouselCardText>
+      {!isHomeSchoolTip && (
+        <StyledButton marginBottom isNotMobile={isNotMobile}>
+          {data.buttonText} <ArrowForwardIosIcon />
+        </StyledButton>
+      )}
     </CarouselCardWrapper>
   );
 };
