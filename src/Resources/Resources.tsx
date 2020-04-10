@@ -19,6 +19,8 @@ import ExpansionPanelDetails from "@material-ui/core/ExpansionPanelDetails";
 import ExpansionPanelSummary from "@material-ui/core/ExpansionPanelSummary";
 import ArrowDropDownIcon from "@material-ui/icons/ArrowDropDown";
 import ArrowDropUpIcon from "@material-ui/icons/ArrowDropUp";
+import Select from "@material-ui/core/Select";
+import MenuItem from "@material-ui/core/MenuItem";
 
 export const Resources: React.FC = () => {
   const { resources } = UseSiteData();
@@ -45,6 +47,8 @@ export const Resources: React.FC = () => {
   useEffect(() => {
     setResourcesList(resources);
   }, [resources]);
+
+  const filterablePrices: { [key: string]: string } = {};
 
   useEffect(() => {
     if (search.length) {
@@ -101,6 +105,7 @@ export const Resources: React.FC = () => {
         label="Find a resource"
         variant="outlined"
       />
+      <Select></Select>
       <Container maxWidth="md">
         {showSearchResults ? (
           <>
@@ -131,11 +136,15 @@ export const Resources: React.FC = () => {
               </ExpansionPanelSummary>
               <ExpansionPanelDetails>
                 <Grid container spacing={4}>
-                  {generalResources?.map(({ ...props }) => (
-                    <Grid item xs={12} md={6}>
-                      <Card {...props} />
-                    </Grid>
-                  ))}
+                  {generalResources?.map(({ ...props }) => {
+                    if (!filterablePrices[props.pricing])
+                      filterablePrices[props.pricing] = props.pricing;
+                    return (
+                      <Grid item xs={12} md={6}>
+                        <Card {...props} />
+                      </Grid>
+                    );
+                  })}
                 </Grid>
               </ExpansionPanelDetails>
             </ExpansionPanel>
@@ -149,11 +158,15 @@ export const Resources: React.FC = () => {
               </ExpansionPanelSummary>
               <ExpansionPanelDetails>
                 <Grid container spacing={4}>
-                  {elementaryResources?.map(({ ...props }) => (
-                    <Grid item xs={12} md={6}>
-                      <Card {...props} />
-                    </Grid>
-                  ))}
+                  {elementaryResources?.map(({ ...props }) => {
+                    if (!filterablePrices[props.pricing])
+                      filterablePrices[props.pricing] = props.pricing;
+                    return (
+                      <Grid item xs={12} md={6}>
+                        <Card {...props} />
+                      </Grid>
+                    );
+                  })}
                 </Grid>
               </ExpansionPanelDetails>
             </ExpansionPanel>
@@ -173,11 +186,15 @@ export const Resources: React.FC = () => {
               </ExpansionPanelSummary>
               <ExpansionPanelDetails>
                 <Grid container spacing={4}>
-                  {middleAndHighResources?.map(({ ...props }) => (
-                    <Grid item xs={12} md={6}>
-                      <Card {...props} />
-                    </Grid>
-                  ))}
+                  {middleAndHighResources?.map(({ ...props }) => {
+                    if (!filterablePrices[props.pricing])
+                      filterablePrices[props.pricing] = props.pricing;
+                    return (
+                      <Grid item xs={12} md={6}>
+                        <Card {...props} />
+                      </Grid>
+                    );
+                  })}
                 </Grid>
               </ExpansionPanelDetails>
             </ExpansionPanel>
