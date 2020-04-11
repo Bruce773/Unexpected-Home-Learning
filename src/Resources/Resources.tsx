@@ -10,9 +10,12 @@ import Button from "@material-ui/core/Button";
 import ArrowBackIcon from "@material-ui/icons/ArrowBack";
 import Paper from "@material-ui/core/Paper";
 import { Link } from "globalStyles";
-import Select from "@material-ui/core/Select";
-import MenuItem from "@material-ui/core/MenuItem";
 import { AllResourcesSection } from "./AllResourcesSection";
+import { FilterDropdowns } from "./FilterDropdowns";
+
+export interface FilterStateTypes {
+  pricing: string;
+}
 
 export const Resources: React.FC = () => {
   const { resources } = UseSiteData();
@@ -20,6 +23,11 @@ export const Resources: React.FC = () => {
   const [resourcesList, setResourcesList] = useState<ResourcesType | any>(
     resources
   );
+
+  const [filterState, setFiltersState] = useState<FilterStateTypes>({
+    pricing: "placeholder",
+  });
+
   const {
     handleChange,
     values: { search },
@@ -31,15 +39,6 @@ export const Resources: React.FC = () => {
   useEffect(() => {
     setResourcesList(resources);
   }, [resources]);
-
-  const filterablePrices: { [key: string]: string } = {};
-
-  const createDropDownList = (menuList: { [key: string]: string }) => {
-    for (const key in menuList) {
-      console.log(key);
-    }
-    return <></>;
-  };
 
   useEffect(() => {
     if (search.length) {
@@ -96,7 +95,10 @@ export const Resources: React.FC = () => {
         label="Find a resource"
         variant="outlined"
       />
-      <Select>{createDropDownList(filterablePrices)}</Select>
+      <FilterDropdowns
+        filtersState={filterState}
+        setFiltersState={setFiltersState}
+      />
       <Container maxWidth="md">
         {showSearchResults ? (
           <>
