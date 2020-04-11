@@ -15,9 +15,9 @@ export const AboutSection: React.FC = () => (
       "homeschooling" during the COVID-19 pandemic. We're here to provide you
       with resources!
     </AboutSectionText>
-    <AboutSectionHeadingText>What do I have to pay?</AboutSectionHeadingText>
+    <AboutSectionHeadingText>It's free!</AboutSectionHeadingText>
     <AboutSectionText>
-      Absolutely nothing! Unexpected Home Learning is free for anyone to use!
+      Unexpected Home Learning is free for anyone to use!
       Some of the resources we provide links to might be subscription based, but
       we provide plenty of free options if you're on a budget!
     </AboutSectionText>
