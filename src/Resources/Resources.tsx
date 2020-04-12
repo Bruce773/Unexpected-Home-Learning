@@ -1,24 +1,29 @@
 import React, { useState, useEffect } from "react";
-import {
-  UseSiteData,
-  Resources as ResourcesType,
-  UseSplitResources,
-} from "Hooks";
+import { UseSiteData, Resources as ResourcesType } from "Hooks";
 import { Card, MainHeader } from "Components";
 import Container from "@material-ui/core/Container";
 import Grid from "@material-ui/core/Grid";
 import TextField from "@material-ui/core/TextField";
 import { useFormik } from "formik";
-import { SectionHeader, SearchResultsCount } from "./elements";
+import { SearchResultsCount } from "./elements";
 import Button from "@material-ui/core/Button";
 import ArrowBackIcon from "@material-ui/icons/ArrowBack";
 import Paper from "@material-ui/core/Paper";
 import { Link } from "globalStyles";
-import ExpansionPanel from "@material-ui/core/ExpansionPanel";
-import ExpansionPanelDetails from "@material-ui/core/ExpansionPanelDetails";
-import ExpansionPanelSummary from "@material-ui/core/ExpansionPanelSummary";
-import ArrowDropDownIcon from "@material-ui/icons/ArrowDropDown";
-import ArrowDropUpIcon from "@material-ui/icons/ArrowDropUp";
+import { AllResourcesSection } from "./AllResourcesSection";
+import { FilterDropdowns } from "./FilterDropdowns";
+import { FilterChips } from "./FilterChips";
+
+export type filterTypes = "pricing" | "format";
+
+export type FilterStateTypes = {
+  [key in filterTypes]: string;
+};
+
+interface FilterListFuncProps {
+  list: { resourceFormat: any; pricing: any }[];
+  clearList(): void;
+}
 
 export const Resources: React.FC = () => {
   const { resources } = UseSiteData();
@@ -26,9 +31,12 @@ export const Resources: React.FC = () => {
   const [resourcesList, setResourcesList] = useState<ResourcesType | any>(
     resources
   );
-  const [sectionOneDown, setSectionOneDown] = useState(false);
-  const [sectionTwoDown, setSectionTwoDown] = useState(false);
-  const [sectionThreeDown, setSectionThreeDown] = useState(false);
+
+  const [filterState, setFiltersState] = useState<FilterStateTypes>({
+    pricing: "placeholder",
+    format: "placeholder",
+  });
+
   const {
     handleChange,
     values: { search },
@@ -36,22 +44,25 @@ export const Resources: React.FC = () => {
     initialValues: { search: "" },
     onSubmit: () => undefined,
   });
-  const {
-    generalResources,
-    elementaryResources,
-    middleAndHighResources,
-  } = UseSplitResources(resources);
 
   useEffect(() => {
     setResourcesList(resources);
   }, [resources]);
 
+  // Central function for handling all search/filter operations
   useEffect(() => {
-    if (search.length) {
-      setResourcesList([]);
-      const filteredItems: any[] = [];
+    if (
       resources &&
-        resources.forEach((item) => {
+      (search.length ||
+        filterState.format !== "placeholder" ||
+        filterState.pricing !== "placeholder")
+    ) {
+      setResourcesList([]);
+      let filteredItems: any[] = [];
+
+      // Handle search via text input
+      if (search.length) {
+        resources.forEach(item => {
           const lowercaseSearchTerm = search.toLowerCase();
 
           const lowercasedTitle = item.title.toLowerCase();
@@ -72,6 +83,66 @@ export const Resources: React.FC = () => {
             filteredItems.push(item);
           }
         });
+      }
+
+      // Adjusts filter list according to options selected by the dropdowns
+      const filterList = ({ list, clearList }: FilterListFuncProps) => {
+        const listCopy = list;
+        clearList();
+        listCopy.forEach(item => {
+          const { resourceFormat, pricing } = item;
+
+          const lowerCasedItemFormat = resourceFormat.toLowerCase();
+          const lowerCasedDropdownFormat = filterState.format.toLowerCase();
+          const lowerCasedItemPricing = pricing.toLowerCase();
+          const lowerCasedDropdownPricing = filterState.pricing.toLowerCase();
+
+          const dropdownFormatIsSelected = filterState.format !== "placeholder";
+          const dropdownPricingIsSelected =
+            filterState.pricing !== "placeholder";
+
+          if (
+            dropdownFormatIsSelected &&
+            !dropdownPricingIsSelected &&
+            lowerCasedItemFormat === lowerCasedDropdownFormat
+          ) {
+            filteredItems.push(item);
+          } else if (
+            !dropdownFormatIsSelected &&
+            dropdownPricingIsSelected &&
+            lowerCasedItemPricing === lowerCasedDropdownPricing
+          ) {
+            filteredItems.push(item);
+          } else if (
+            dropdownFormatIsSelected &&
+            dropdownPricingIsSelected &&
+            lowerCasedItemPricing === lowerCasedDropdownPricing &&
+            lowerCasedItemFormat === lowerCasedDropdownFormat
+          ) {
+            filteredItems.push(item);
+          }
+        });
+      };
+
+      if (!search.length) {
+        filterList({
+          list: resources,
+          clearList: () => {
+            filteredItems = [];
+          },
+        });
+      } else if (
+        filterState.format !== "placeholder" ||
+        filterState.pricing !== "placeholder"
+      ) {
+        filterList({
+          list: filteredItems,
+          clearList: () => {
+            filteredItems = [];
+          },
+        });
+      }
+
       setResourcesList(filteredItems);
       setShowSearchResults(true);
     } else {
@@ -79,7 +150,7 @@ export const Resources: React.FC = () => {
       setShowSearchResults(false);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [search]);
+  }, [search, filterState]);
 
   return (
     <>
@@ -101,9 +172,18 @@ export const Resources: React.FC = () => {
         label="Find a resource"
         variant="outlined"
       />
+      <FilterDropdowns
+        resources={resourcesList}
+        filtersState={filterState}
+        setFiltersState={setFiltersState}
+      />
       <Container maxWidth="md">
         {showSearchResults ? (
           <>
+            <FilterChips
+              setFiltersState={setFiltersState}
+              filters={filterState}
+            />
             <SearchResultsCount>
               Found {resourcesList.length} items
             </SearchResultsCount>
@@ -120,68 +200,7 @@ export const Resources: React.FC = () => {
             </Grid>
           </>
         ) : (
-          <>
-            <SectionHeader>General</SectionHeader>
-            <ExpansionPanel onChange={() => setSectionOneDown(!sectionOneDown)}>
-              <ExpansionPanelSummary>
-                <Button variant="text">
-                  General resources{" "}
-                  {sectionOneDown ? <ArrowDropUpIcon /> : <ArrowDropDownIcon />}
-                </Button>
-              </ExpansionPanelSummary>
-              <ExpansionPanelDetails>
-                <Grid container spacing={4}>
-                  {generalResources?.map(({ ...props }) => (
-                    <Grid item xs={12} md={6}>
-                      <Card {...props} />
-                    </Grid>
-                  ))}
-                </Grid>
-              </ExpansionPanelDetails>
-            </ExpansionPanel>
-            <SectionHeader>Elementary School</SectionHeader>
-            <ExpansionPanel onChange={() => setSectionTwoDown(!sectionTwoDown)}>
-              <ExpansionPanelSummary>
-                <Button variant="text">
-                  Elementary School resources{" "}
-                  {sectionTwoDown ? <ArrowDropUpIcon /> : <ArrowDropDownIcon />}
-                </Button>
-              </ExpansionPanelSummary>
-              <ExpansionPanelDetails>
-                <Grid container spacing={4}>
-                  {elementaryResources?.map(({ ...props }) => (
-                    <Grid item xs={12} md={6}>
-                      <Card {...props} />
-                    </Grid>
-                  ))}
-                </Grid>
-              </ExpansionPanelDetails>
-            </ExpansionPanel>
-            <SectionHeader>Middle/High School</SectionHeader>
-            <ExpansionPanel
-              onChange={() => setSectionThreeDown(!sectionThreeDown)}
-            >
-              <ExpansionPanelSummary>
-                <Button variant="text">
-                  Middle/High School resources{" "}
-                  {sectionThreeDown ? (
-                    <ArrowDropUpIcon />
-                  ) : (
-                    <ArrowDropDownIcon />
-                  )}
-                </Button>
-              </ExpansionPanelSummary>
-              <ExpansionPanelDetails>
-                <Grid container spacing={4}>
-                  {middleAndHighResources?.map(({ ...props }) => (
-                    <Grid item xs={12} md={6}>
-                      <Card {...props} />
-                    </Grid>
-                  ))}
-                </Grid>
-              </ExpansionPanelDetails>
-            </ExpansionPanel>
-          </>
+          <AllResourcesSection />
         )}
       </Container>
     </>

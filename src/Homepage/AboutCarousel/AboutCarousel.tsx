@@ -33,8 +33,6 @@ export const AboutCarousel: React.FC = () => {
 
   const CarouselData = buildCarouselItemsArr();
 
-  console.log(CarouselData);
-
   return (
     <CarouselWrapper isNotMobile={isNotMobile}>
       <Carousel
