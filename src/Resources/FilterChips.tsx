@@ -19,7 +19,7 @@ export const FilterChips: React.FC<Props> = ({ filters, setFiltersState }) => {
     <>
       {filtersList.map(({ key, value }) => (
         <Chip
-          style={{ marginLeft: "10px" }}
+          style={{ marginLeft: "10px", marginTop: "20px" }}
           label={value}
           onDelete={() => {
             const newState = { ...filters };

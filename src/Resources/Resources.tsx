@@ -45,10 +45,15 @@ export const Resources: React.FC = () => {
   }, [resources]);
 
   useEffect(() => {
-    if (search.length) {
-      setResourcesList([]);
-      const filteredItems: any[] = [];
+    if (
       resources &&
+      (search.length ||
+        filterState.format !== "placeholder" ||
+        filterState.pricing !== "placeholder")
+    ) {
+      setResourcesList([]);
+      let filteredItems: any[] = [];
+      if (search.length) {
         resources.forEach(item => {
           const lowercaseSearchTerm = search.toLowerCase();
 
@@ -70,15 +75,50 @@ export const Resources: React.FC = () => {
             filteredItems.push(item);
           }
         });
-      if (
-        filteredItems.length &&
-        (filterState.format !== "placeholder" ||
-          filterState.pricing !== "placeholder")
-      ) {
-        // filteredItems.forEach(({ pricing, resourceFormat }) =>
-        //   console.log(pricing, resourceFormat)
-        // );
       }
+
+      interface FilterListFuncProps {
+        list: { resourceFormat: any; pricing: any }[];
+        clearList(): void;
+      }
+
+      const filterList = ({ list, clearList }: FilterListFuncProps) => {
+        const listCopy = list;
+        clearList();
+        listCopy.forEach(item => {
+          const { resourceFormat, pricing } = item;
+
+          const formatCondition = resourceFormat.toLowerCase();
+          const pricingCondition = pricing.toLowerCase();
+
+          if (
+            formatCondition === filterState.format.toLowerCase() ||
+            pricingCondition === filterState.pricing.toLowerCase()
+          ) {
+            filteredItems.push(item);
+          }
+        });
+      };
+
+      if (!search.length) {
+        filterList({
+          list: resources,
+          clearList: () => {
+            filteredItems = [];
+          },
+        });
+      } else if (
+        filterState.format !== "placeholder" ||
+        filterState.pricing !== "placeholder"
+      ) {
+        filterList({
+          list: filteredItems,
+          clearList: () => {
+            filteredItems = [];
+          },
+        });
+      }
+
       setResourcesList(filteredItems);
       setShowSearchResults(true);
     } else {
