@@ -20,6 +20,11 @@ export type FilterStateTypes = {
   [key in filterTypes]: string;
 };
 
+interface FilterListFuncProps {
+  list: { resourceFormat: any; pricing: any }[];
+  clearList(): void;
+}
+
 export const Resources: React.FC = () => {
   const { resources } = UseSiteData();
   const [showSearchResults, setShowSearchResults] = useState(false);
@@ -44,6 +49,7 @@ export const Resources: React.FC = () => {
     setResourcesList(resources);
   }, [resources]);
 
+  // Central function for handling all search/filter operations
   useEffect(() => {
     if (
       resources &&
@@ -53,6 +59,8 @@ export const Resources: React.FC = () => {
     ) {
       setResourcesList([]);
       let filteredItems: any[] = [];
+
+      // Handle search via text input
       if (search.length) {
         resources.forEach(item => {
           const lowercaseSearchTerm = search.toLowerCase();
@@ -77,23 +85,39 @@ export const Resources: React.FC = () => {
         });
       }
 
-      interface FilterListFuncProps {
-        list: { resourceFormat: any; pricing: any }[];
-        clearList(): void;
-      }
-
+      // Adjusts filter list according to options selected by the dropdowns
       const filterList = ({ list, clearList }: FilterListFuncProps) => {
         const listCopy = list;
         clearList();
         listCopy.forEach(item => {
           const { resourceFormat, pricing } = item;
 
-          const formatCondition = resourceFormat.toLowerCase();
-          const pricingCondition = pricing.toLowerCase();
+          const lowerCasedItemFormat = resourceFormat.toLowerCase();
+          const lowerCasedDropdownFormat = filterState.format.toLowerCase();
+          const lowerCasedItemPricing = pricing.toLowerCase();
+          const lowerCasedDropdownPricing = filterState.pricing.toLowerCase();
+
+          const dropdownFormatIsSelected = filterState.format !== "placeholder";
+          const dropdownPricingIsSelected =
+            filterState.pricing !== "placeholder";
 
           if (
-            formatCondition === filterState.format.toLowerCase() ||
-            pricingCondition === filterState.pricing.toLowerCase()
+            dropdownFormatIsSelected &&
+            !dropdownPricingIsSelected &&
+            lowerCasedItemFormat === lowerCasedDropdownFormat
+          ) {
+            filteredItems.push(item);
+          } else if (
+            !dropdownFormatIsSelected &&
+            dropdownPricingIsSelected &&
+            lowerCasedItemPricing === lowerCasedDropdownPricing
+          ) {
+            filteredItems.push(item);
+          } else if (
+            dropdownFormatIsSelected &&
+            dropdownPricingIsSelected &&
+            lowerCasedItemPricing === lowerCasedDropdownPricing &&
+            lowerCasedItemFormat === lowerCasedDropdownFormat
           ) {
             filteredItems.push(item);
           }
