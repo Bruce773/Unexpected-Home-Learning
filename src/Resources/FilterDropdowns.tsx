@@ -1,8 +1,8 @@
 import React, { useEffect, useState, Dispatch } from "react";
-import { UseSiteData } from "Hooks";
-import Select from "@material-ui/core/Select";
-import MenuItem from "@material-ui/core/MenuItem";
+import { Resources } from "Hooks";
 import { FilterStateTypes } from "./Resources";
+import { StyledSelect } from "./elements";
+import MenuItem from "@material-ui/core/MenuItem";
 
 interface StringIndexedObject {
   [key: string]: string;
@@ -11,31 +11,40 @@ interface StringIndexedObject {
 interface FilterProps {
   filtersState: FilterStateTypes;
   setFiltersState: Dispatch<FilterStateTypes>;
+  resources: Resources;
 }
 
 interface CreateDropdownListTypes {
   menuList: StringIndexedObject;
   placeHolderString: string;
-  filterPhrase: "pricing";
+  filterPhrase: "pricing" | "format";
 }
 
 export const FilterDropdowns = ({
   filtersState,
   setFiltersState,
+  resources,
 }: FilterProps) => {
-  const { resources } = UseSiteData();
   const [filterablePrices, setFilterablePrices] = useState<StringIndexedObject>(
     {}
   );
+  const [filterableFormats, setFilterableFormats] = useState<
+    StringIndexedObject
+  >({});
 
   useEffect(() => {
-    const obj: StringIndexedObject = {};
-    resources?.forEach(({ pricing }) => {
-      if (!obj[pricing]) {
-        obj[pricing] = pricing;
+    const pricingObj: StringIndexedObject = {};
+    const formatObj: StringIndexedObject = {};
+    resources?.forEach(({ pricing, resourceFormat }) => {
+      if (!pricingObj[pricing]) {
+        pricingObj[pricing] = pricing;
+      }
+      if (!formatObj[resourceFormat]) {
+        formatObj[resourceFormat] = resourceFormat;
       }
     });
-    setFilterablePrices(obj);
+    setFilterablePrices(pricingObj);
+    setFilterableFormats(formatObj);
   }, [resources]);
 
   const createDropDownList = ({
@@ -52,7 +61,7 @@ export const FilterDropdowns = ({
       dropDownMenuItems.push(<MenuItem value={key}>{key}</MenuItem>);
     }
     return (
-      <Select
+      <StyledSelect
         onChange={({ target: { value } }) => {
           const newState: any = { ...filtersState };
           newState[filterPhrase] = value;
@@ -61,7 +70,7 @@ export const FilterDropdowns = ({
         value={filtersState[filterPhrase]}
       >
         {dropDownMenuItems}
-      </Select>
+      </StyledSelect>
     );
   };
 
@@ -71,6 +80,11 @@ export const FilterDropdowns = ({
         menuList: filterablePrices,
         placeHolderString: "Filter by Price",
         filterPhrase: "pricing",
+      })}
+      {createDropDownList({
+        menuList: filterableFormats,
+        placeHolderString: "Filter by Format",
+        filterPhrase: "format",
       })}
     </>
   );

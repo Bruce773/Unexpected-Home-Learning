@@ -15,6 +15,7 @@ import { FilterDropdowns } from "./FilterDropdowns";
 
 export interface FilterStateTypes {
   pricing: string;
+  format: string;
 }
 
 export const Resources: React.FC = () => {
@@ -26,6 +27,7 @@ export const Resources: React.FC = () => {
 
   const [filterState, setFiltersState] = useState<FilterStateTypes>({
     pricing: "placeholder",
+    format: "placeholder",
   });
 
   const {
@@ -96,6 +98,7 @@ export const Resources: React.FC = () => {
         variant="outlined"
       />
       <FilterDropdowns
+        resources={resourcesList}
         filtersState={filterState}
         setFiltersState={setFiltersState}
       />

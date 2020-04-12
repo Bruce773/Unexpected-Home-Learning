@@ -1,5 +1,6 @@
 import styled from "styled-components";
-import { BaseFont } from "globalStyles";
+import { BaseFont, lightTealGreen } from "globalStyles";
+import Select from "@material-ui/core/Select";
 
 export const SectionHeader = styled(BaseFont)`
   & {
@@ -12,4 +13,13 @@ export const SectionHeader = styled(BaseFont)`
 export const SearchResultsCount = styled(BaseFont)`
   margin: 20px;
   font-size: 1.4rem;
+`;
+
+export const StyledSelect = styled(Select)`
+  && {
+    margin-top: auto;
+    font-size: 20px;
+    margin-left: 20px;
+    color: ${lightTealGreen};
+  }
 `;
