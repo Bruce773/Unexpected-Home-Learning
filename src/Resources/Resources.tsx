@@ -12,11 +12,13 @@ import Paper from "@material-ui/core/Paper";
 import { Link } from "globalStyles";
 import { AllResourcesSection } from "./AllResourcesSection";
 import { FilterDropdowns } from "./FilterDropdowns";
+import { FilterChips } from "./FilterChips";
 
-export interface FilterStateTypes {
-  pricing: string;
-  format: string;
-}
+export type filterTypes = "pricing" | "format";
+
+export type FilterStateTypes = {
+  [key in filterTypes]: string;
+};
 
 export const Resources: React.FC = () => {
   const { resources } = UseSiteData();
@@ -68,6 +70,15 @@ export const Resources: React.FC = () => {
             filteredItems.push(item);
           }
         });
+      if (
+        filteredItems.length &&
+        (filterState.format !== "placeholder" ||
+          filterState.pricing !== "placeholder")
+      ) {
+        // filteredItems.forEach(({ pricing, resourceFormat }) =>
+        //   console.log(pricing, resourceFormat)
+        // );
+      }
       setResourcesList(filteredItems);
       setShowSearchResults(true);
     } else {
@@ -75,7 +86,7 @@ export const Resources: React.FC = () => {
       setShowSearchResults(false);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [search]);
+  }, [search, filterState]);
 
   return (
     <>
@@ -105,6 +116,10 @@ export const Resources: React.FC = () => {
       <Container maxWidth="md">
         {showSearchResults ? (
           <>
+            <FilterChips
+              setFiltersState={setFiltersState}
+              filters={filterState}
+            />
             <SearchResultsCount>
               Found {resourcesList.length} items
             </SearchResultsCount>

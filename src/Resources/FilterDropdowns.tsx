@@ -1,10 +1,10 @@
 import React, { useEffect, useState, Dispatch } from "react";
 import { Resources } from "Hooks";
-import { FilterStateTypes } from "./Resources";
+import { FilterStateTypes, filterTypes } from "./Resources";
 import { StyledSelect } from "./elements";
 import MenuItem from "@material-ui/core/MenuItem";
 
-interface StringIndexedObject {
+export interface StringIndexedObject {
   [key: string]: string;
 }
 
@@ -17,14 +17,14 @@ interface FilterProps {
 interface CreateDropdownListTypes {
   menuList: StringIndexedObject;
   placeHolderString: string;
-  filterPhrase: "pricing" | "format";
+  filterPhrase: filterTypes;
 }
 
-export const FilterDropdowns = ({
+export const FilterDropdowns: React.FC<FilterProps> = ({
   filtersState,
   setFiltersState,
   resources,
-}: FilterProps) => {
+}) => {
   const [filterablePrices, setFilterablePrices] = useState<StringIndexedObject>(
     {}
   );
