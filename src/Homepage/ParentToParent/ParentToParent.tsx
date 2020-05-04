@@ -41,7 +41,7 @@ export const ParentToParent: React.FC = () => {
           </Text>
         </>
       ),
-      areaOfExpertise: "Facebook Group"
+      areaOfExpertise: "Facebook Group",
     },
     {
       name: `The Learning Space`,
@@ -64,7 +64,7 @@ export const ParentToParent: React.FC = () => {
           </Text>
         </>
       ),
-      areaOfExpertise: "Facebook Group"
+      areaOfExpertise: "Facebook Group",
     },
     {
       name: `NEPA Homeschool Teens`,
@@ -88,8 +88,31 @@ export const ParentToParent: React.FC = () => {
           </Text>
         </>
       ),
-      areaOfExpertise: "Facebook Group"
-    }
+      areaOfExpertise: "Facebook Group",
+    },
+    {
+      name: `Special Needs Group: PMLB`,
+      data: (
+        <>
+          <Text>
+            A page to help children with special needs. Find resources and like
+            minded homeschooling parents.
+          </Text>
+          <a
+            style={{ textDecoration: "none" }}
+            target="_blank"
+            rel="noopener noreferrer"
+            href="https://www.facebook.com/groups/poconomountainslittlebear/"
+          >
+            <LinkText>Facebook Group</LinkText>
+          </a>
+          <Text>
+            Feel free to post your own resources or simply interact with others.
+          </Text>
+        </>
+      ),
+      areaOfExpertise: "Facebook Group",
+    },
   ];
   return (
     <>

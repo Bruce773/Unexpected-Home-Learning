@@ -7,6 +7,7 @@ import { LiveComments } from "LiveComments";
 import Fab from "@material-ui/core/Fab";
 import HelpOutlineIcon from "@material-ui/icons/HelpOutline";
 import { ContactModal } from "./Components";
+import { tealGreen } from "globalStyles";
 
 const App = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -23,10 +24,15 @@ const App = () => {
         </ScrollToTop>
       </Router>
       <Fab
-        style={{ position: "fixed", bottom: "20px", right: "20px" }}
+        style={{
+          position: "fixed",
+          bottom: "30px",
+          right: "30px",
+          backgroundColor: "light-grey",
+        }}
         onClick={() => setIsOpen(true)}
       >
-        <HelpOutlineIcon />
+        <HelpOutlineIcon style={{ color: tealGreen }} />
       </Fab>
       <ContactModal isOpen={isOpen} setIsOpen={setIsOpen} />
     </div>

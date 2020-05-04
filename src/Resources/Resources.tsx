@@ -1,47 +1,47 @@
-import React, { useState, useEffect } from "react";
-import { UseSiteData, Resources as ResourcesType } from "Hooks";
-import { Card, MainHeader } from "Components";
-import Container from "@material-ui/core/Container";
-import Grid from "@material-ui/core/Grid";
-import TextField from "@material-ui/core/TextField";
-import { useFormik } from "formik";
-import { SearchResultsCount } from "./elements";
-import Button from "@material-ui/core/Button";
-import ArrowBackIcon from "@material-ui/icons/ArrowBack";
-import Paper from "@material-ui/core/Paper";
-import { Link } from "globalStyles";
-import { AllResourcesSection } from "./AllResourcesSection";
-import { FilterDropdowns } from "./FilterDropdowns";
-import { FilterChips } from "./FilterChips";
+import React, {useState, useEffect} from 'react';
+import {UseSiteData, Resources as ResourcesType} from 'Hooks';
+import {Card, MainHeader} from 'Components';
+import Container from '@material-ui/core/Container';
+import Grid from '@material-ui/core/Grid';
+import TextField from '@material-ui/core/TextField';
+import {useFormik} from 'formik';
+import {SearchResultsCount} from './elements';
+import Button from '@material-ui/core/Button';
+import ArrowBackIcon from '@material-ui/icons/ArrowBack';
+import Paper from '@material-ui/core/Paper';
+import {Link} from 'globalStyles';
+import {AllResourcesSection} from './AllResourcesSection';
+import {FilterDropdowns} from './FilterDropdowns';
+import {FilterChips} from './FilterChips';
 
-export type filterTypes = "pricing" | "format";
+export type filterTypes = 'pricing' | 'format';
 
 export type FilterStateTypes = {
   [key in filterTypes]: string;
 };
 
 interface FilterListFuncProps {
-  list: { resourceFormat: any; pricing: any }[];
+  list: {resourceFormat: any; pricing: any}[];
   clearList(): void;
 }
 
 export const Resources: React.FC = () => {
-  const { resources } = UseSiteData();
+  const {resources} = UseSiteData();
   const [showSearchResults, setShowSearchResults] = useState(false);
   const [resourcesList, setResourcesList] = useState<ResourcesType | any>(
-    resources
+    resources,
   );
 
   const [filterState, setFiltersState] = useState<FilterStateTypes>({
-    pricing: "placeholder",
-    format: "placeholder",
+    pricing: 'placeholder',
+    format: 'placeholder',
   });
 
   const {
     handleChange,
-    values: { search },
+    values: {search},
   } = useFormik({
-    initialValues: { search: "" },
+    initialValues: {search: ''},
     onSubmit: () => undefined,
   });
 
@@ -54,8 +54,8 @@ export const Resources: React.FC = () => {
     if (
       resources &&
       (search.length ||
-        filterState.format !== "placeholder" ||
-        filterState.pricing !== "placeholder")
+        filterState.format !== 'placeholder' ||
+        filterState.pricing !== 'placeholder')
     ) {
       setResourcesList([]);
       let filteredItems: any[] = [];
@@ -66,7 +66,7 @@ export const Resources: React.FC = () => {
           const lowercaseSearchTerm = search.toLowerCase();
 
           const lowercasedTitle = item.title.toLowerCase();
-          const category = item.resourceCategory.join("").toLowerCase();
+          const category = item.resourceCategory.join('').toLowerCase();
           const format = item.resourceFormat.toLowerCase();
 
           if (lowercasedTitle.includes(lowercaseSearchTerm)) {
@@ -86,20 +86,20 @@ export const Resources: React.FC = () => {
       }
 
       // Adjusts filter list according to options selected by the dropdowns
-      const filterList = ({ list, clearList }: FilterListFuncProps) => {
+      const filterList = ({list, clearList}: FilterListFuncProps) => {
         const listCopy = list;
         clearList();
         listCopy.forEach(item => {
-          const { resourceFormat, pricing } = item;
+          const {resourceFormat, pricing} = item;
 
           const lowerCasedItemFormat = resourceFormat.toLowerCase();
           const lowerCasedDropdownFormat = filterState.format.toLowerCase();
           const lowerCasedItemPricing = pricing.toLowerCase();
           const lowerCasedDropdownPricing = filterState.pricing.toLowerCase();
 
-          const dropdownFormatIsSelected = filterState.format !== "placeholder";
+          const dropdownFormatIsSelected = filterState.format !== 'placeholder';
           const dropdownPricingIsSelected =
-            filterState.pricing !== "placeholder";
+            filterState.pricing !== 'placeholder';
 
           if (
             dropdownFormatIsSelected &&
@@ -132,8 +132,8 @@ export const Resources: React.FC = () => {
           },
         });
       } else if (
-        filterState.format !== "placeholder" ||
-        filterState.pricing !== "placeholder"
+        filterState.format !== 'placeholder' ||
+        filterState.pricing !== 'placeholder'
       ) {
         filterList({
           list: filteredItems,
@@ -155,20 +155,20 @@ export const Resources: React.FC = () => {
   return (
     <>
       <Link to="/">
-        <Paper style={{ position: "fixed", top: "0px", marginLeft: "35px" }}>
+        <Paper style={{position: 'fixed', top: '0px', marginLeft: '35px'}}>
           <Button variant="text">
             <ArrowBackIcon /> Home
           </Button>
         </Paper>
       </Link>
-      <MainHeader style={{ marginBottom: "60px" }} variant="h2">
+      <MainHeader style={{marginBottom: '60px'}} variant="h2">
         Unexpected Home Learning
       </MainHeader>
       <TextField
         name="search"
         onChange={handleChange}
         value={search}
-        style={{ marginBottom: "20px", width: "380px" }}
+        style={{marginBottom: '20px', width: '380px'}}
         label="Find a resource"
         variant="outlined"
       />
@@ -191,12 +191,12 @@ export const Resources: React.FC = () => {
               {resourcesList !== undefined &&
               Array.isArray(resourcesList) &&
               resourcesList.length
-                ? resourcesList.map(({ ...props }) => (
+                ? resourcesList.map(({...props}) => (
                     <Grid item xs={12} md={6}>
                       <Card {...props} />
                     </Grid>
                   ))
-                : "No results"}
+                : 'No results'}
             </Grid>
           </>
         ) : (
