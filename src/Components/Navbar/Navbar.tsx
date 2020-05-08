@@ -8,6 +8,9 @@ import { useScrollPosition } from "@n8tb1t/use-scroll-position";
 import Button from "@material-ui/core/Button";
 import styled from "styled-components";
 import { tealGreen, Link } from "globalStyles";
+import useMediaQuery from "@material-ui/core/useMediaQuery";
+import MenuIcon from "@material-ui/icons/Menu";
+import IconButton from "@material-ui/core/IconButton";
 
 const StyledHeader = styled(Typography)`
   && {
@@ -15,6 +18,12 @@ const StyledHeader = styled(Typography)`
     color: ${tealGreen};
     text-transform: none;
   }
+`;
+
+const MobileNavButton = styled(Button)`
+  margin-top: 10px;
+  margin-bottom: 10px;
+  width: 90%;
 `;
 
 export const navPages: { name: string; location: string }[] = [
@@ -26,11 +35,15 @@ export const navPages: { name: string; location: string }[] = [
 export const Navbar: React.FC = () => {
   const [showNav, setShowNav] = useState(false);
   const [isAtTop, setIsAtTop] = useState(false);
+  const [showMobileNavMenu, setShowMobileNavMenu] = useState(false);
+
   const trigger = useScrollTrigger({ threshold: 300 });
 
+  const isNotMobile = useMediaQuery("(min-width:600px)");
+
   /*
-    @TODO: Look into more performant way of handling state updates
-    This component currently unmounts and mounts everytime someone scrolls on the page
+  @TODO: Look into more performant way of handling state updates
+  This component currently unmounts and mounts everytime someone scrolls on the page
   */
 
   useScrollPosition(({ currPos }) => {
@@ -46,8 +59,20 @@ export const Navbar: React.FC = () => {
       setShowNav(true);
     } else if (isAtTop) {
       setShowNav(false);
+      if (showMobileNavMenu) setShowMobileNavMenu(false);
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isAtTop, trigger]);
+
+  const LinkMainHeader: React.FC = () => (
+    <Link to="/">
+      <Button onClick={() => setIsAtTop(true)}>
+        <StyledHeader variant={isNotMobile ? "h5" : "h6"}>
+          Unexpected Home Learning
+        </StyledHeader>
+      </Button>
+    </Link>
+  );
 
   return (
     <Slide appear={false} direction="down" in={showNav}>
@@ -55,18 +80,46 @@ export const Navbar: React.FC = () => {
         style={{ backgroundColor: "#e4e4e4" }}
         title="Unexpected Home Learning"
       >
-        <Toolbar>
-          <Link to="/">
-            <Button onClick={() => setIsAtTop(true)}>
-              <StyledHeader variant="h5">Unexpected Home Learning</StyledHeader>
-            </Button>
-          </Link>
-          {navPages.map(({ name, location }) => (
-            <Link to={location}>
-              <Button onClick={() => setIsAtTop(true)}>{name}</Button>
-            </Link>
-          ))}
-        </Toolbar>
+        {!isNotMobile ? (
+          <>
+            <Toolbar>
+              <IconButton
+                onClick={() => setShowMobileNavMenu(!showMobileNavMenu)}
+                style={{ paddingLeft: "0px" }}
+              >
+                <MenuIcon />
+              </IconButton>
+              <div style={{ paddingLeft: "12px" }}>
+                <LinkMainHeader />
+              </div>
+            </Toolbar>
+            {showMobileNavMenu && (
+              <Slide direction="down" appear={false} in={showMobileNavMenu}>
+                <>
+                  {navPages.map(({ name, location }) => (
+                    <Link style={{ textAlign: "center" }} to={location}>
+                      <MobileNavButton
+                        variant="outlined"
+                        onClick={() => setIsAtTop(true)}
+                      >
+                        {name}
+                      </MobileNavButton>
+                    </Link>
+                  ))}
+                </>
+              </Slide>
+            )}
+          </>
+        ) : (
+          <Toolbar>
+            <LinkMainHeader />{" "}
+            {navPages.map(({ name, location }) => (
+              <Link to={location}>
+                <Button onClick={() => setIsAtTop(true)}>{name}</Button>
+              </Link>
+            ))}
+          </Toolbar>
+        )}
       </AppBar>
     </Slide>
   );
