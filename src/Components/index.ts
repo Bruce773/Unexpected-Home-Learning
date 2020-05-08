@@ -1,5 +1,5 @@
 export * from "./Card";
-export * from "./GlobalComponents";
+export * from "./MainHeader";
 export * from "./LocalContactsCard";
 export * from "./ContactModal";
 export * from "./Navbar";

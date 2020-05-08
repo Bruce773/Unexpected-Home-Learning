@@ -21,8 +21,12 @@ const RefreshText = styled(BaseFont)`
 
 export const LiveComments: React.FC = () => (
   <>
-    <MainHeader extraMargin={false} />
-    <SubText>Share your homeschooling experience with others</SubText>
+    <MainHeader
+      extraMargin={false}
+      subHeader={
+        <SubText>Share your homeschooling experience with others</SubText>
+      }
+    />
     <RefreshText onClick={() => window.location.reload(true)}>
       Don't see any comments? Click here to refresh
     </RefreshText>
