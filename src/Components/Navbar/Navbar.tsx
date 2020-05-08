@@ -62,7 +62,9 @@ export const Navbar: React.FC = () => {
             </Button>
           </Link>
           {pages.map(({ name, location }) => (
-            <Button>{name}</Button>
+            <Link to={location}>
+              <Button onClick={() => setIsAtTop(true)}>{name}</Button>
+            </Link>
           ))}
         </Toolbar>
       </AppBar>
