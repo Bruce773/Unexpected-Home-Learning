@@ -5,11 +5,28 @@ import useScrollTrigger from "@material-ui/core/useScrollTrigger";
 import Slide from "@material-ui/core/Slide";
 import Typography from "@material-ui/core/Typography";
 import { useScrollPosition } from "@n8tb1t/use-scroll-position";
+import Button from "@material-ui/core/Button";
+import styled from "styled-components";
+import { tealGreen, Link } from "globalStyles";
+
+const StyledHeader = styled(Typography)`
+  && {
+    font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+    color: ${tealGreen};
+    text-transform: none;
+  }
+`;
 
 export const Navbar: React.FC = () => {
   const [showNav, setShowNav] = useState(false);
   const [isAtTop, setIsAtTop] = useState(false);
   const trigger = useScrollTrigger({ threshold: 300 });
+
+  const pages: { name: string; location: string }[] = [
+    { name: "Home", location: "/" },
+    { name: "Resources", location: "/resources" },
+    { name: "Live Comments", location: "/live-comments" },
+  ];
 
   /*
     @TODO: Look into more performant way of handling state updates
@@ -34,9 +51,19 @@ export const Navbar: React.FC = () => {
 
   return (
     <Slide appear={false} direction="down" in={showNav}>
-      <AppBar title="Unexpected Home Learning">
+      <AppBar
+        style={{ backgroundColor: "#e4e4e4" }}
+        title="Unexpected Home Learning"
+      >
         <Toolbar>
-          <Typography variant="h4">Unexpected Home Learning</Typography>
+          <Link to="/">
+            <Button>
+              <StyledHeader variant="h5">Unexpected Home Learning</StyledHeader>
+            </Button>
+          </Link>
+          {pages.map(({ name, location }) => (
+            <Button>{name}</Button>
+          ))}
         </Toolbar>
       </AppBar>
     </Slide>

@@ -14,8 +14,8 @@ const App = () => {
 
   return (
     <div style={{ textAlign: "center", margin: "auto" }}>
-      <Navbar />
       <Router>
+        <Navbar />
         <ScrollToTop>
           <Switch>
             <Route exact path="/" render={() => <Homepage />} />
