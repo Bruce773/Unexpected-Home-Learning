@@ -21,7 +21,7 @@ import { AboutCarousel } from "./AboutCarousel";
 export const Homepage: React.FC = () => (
   <>
     <AboutSectionWrapper>
-      <MainHeader variant="h2">Unexpected Home Learning</MainHeader>
+      <MainHeader extraMargin={false} />
       <Grid container>
         <Grid item xs={12} md={6}>
           <AboutSection />

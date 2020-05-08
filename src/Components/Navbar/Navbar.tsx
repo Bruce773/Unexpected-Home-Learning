@@ -17,16 +17,16 @@ const StyledHeader = styled(Typography)`
   }
 `;
 
+export const navPages: { name: string; location: string }[] = [
+  { name: "Home", location: "/" },
+  { name: "Resources", location: "/resources" },
+  { name: "Live Comments", location: "/live-comments" },
+];
+
 export const Navbar: React.FC = () => {
   const [showNav, setShowNav] = useState(false);
   const [isAtTop, setIsAtTop] = useState(false);
   const trigger = useScrollTrigger({ threshold: 300 });
-
-  const pages: { name: string; location: string }[] = [
-    { name: "Home", location: "/" },
-    { name: "Resources", location: "/resources" },
-    { name: "Live Comments", location: "/live-comments" },
-  ];
 
   /*
     @TODO: Look into more performant way of handling state updates
@@ -57,11 +57,11 @@ export const Navbar: React.FC = () => {
       >
         <Toolbar>
           <Link to="/">
-            <Button>
+            <Button onClick={() => setIsAtTop(true)}>
               <StyledHeader variant="h5">Unexpected Home Learning</StyledHeader>
             </Button>
           </Link>
-          {pages.map(({ name, location }) => (
+          {navPages.map(({ name, location }) => (
             <Link to={location}>
               <Button onClick={() => setIsAtTop(true)}>{name}</Button>
             </Link>
