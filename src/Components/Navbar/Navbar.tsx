@@ -11,6 +11,9 @@ import { tealGreen, Link } from "globalStyles";
 import useMediaQuery from "@material-ui/core/useMediaQuery";
 import MenuIcon from "@material-ui/icons/Menu";
 import IconButton from "@material-ui/core/IconButton";
+import HomeIcon from "@material-ui/icons/Home";
+import ListIcon from "@material-ui/icons/List";
+import ChatIcon from "@material-ui/icons/Chat";
 
 const StyledHeader = styled(Typography)`
   && {
@@ -26,10 +29,28 @@ const MobileNavButton = styled(Button)`
   width: 90%;
 `;
 
-export const navPages: { name: string; location: string }[] = [
-  { name: "Home", location: "/" },
-  { name: "Resources", location: "/resources" },
-  { name: "Live Comments", location: "/live-comments" },
+interface NavPageType {
+  name: string;
+  location: string;
+  icon: JSX.Element;
+}
+
+export const navPages: NavPageType[] = [
+  {
+    name: "Home",
+    location: "/",
+    icon: <HomeIcon fontSize="small" style={{ marginRight: "5px" }} />,
+  },
+  {
+    name: "Resources",
+    location: "/resources",
+    icon: <ListIcon fontSize="small" style={{ marginRight: "5px" }} />,
+  },
+  {
+    name: "Live Comments",
+    location: "/live-comments",
+    icon: <ChatIcon fontSize="small" style={{ marginRight: "5px" }} />,
+  },
 ];
 
 export const Navbar: React.FC = () => {
@@ -96,12 +117,13 @@ export const Navbar: React.FC = () => {
             {showMobileNavMenu && (
               <Slide direction="down" appear={false} in={showMobileNavMenu}>
                 <>
-                  {navPages.map(({ name, location }) => (
+                  {navPages.map(({ name, location, icon }) => (
                     <Link style={{ textAlign: "center" }} to={location}>
                       <MobileNavButton
                         variant="outlined"
                         onClick={() => setIsAtTop(true)}
                       >
+                        {icon}
                         {name}
                       </MobileNavButton>
                     </Link>
