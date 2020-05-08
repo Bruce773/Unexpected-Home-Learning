@@ -6,7 +6,7 @@ import { Resources } from "Resources";
 import { LiveComments } from "LiveComments";
 import Fab from "@material-ui/core/Fab";
 import HelpOutlineIcon from "@material-ui/icons/HelpOutline";
-import { ContactModal } from "./Components";
+import { ContactModal, Navbar } from "./Components";
 import { tealGreen } from "globalStyles";
 
 const App = () => {
@@ -15,6 +15,7 @@ const App = () => {
   return (
     <div style={{ textAlign: "center", margin: "auto" }}>
       <Router>
+        <Navbar />
         <ScrollToTop>
           <Switch>
             <Route exact path="/" render={() => <Homepage />} />
