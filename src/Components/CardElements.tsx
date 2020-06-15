@@ -92,7 +92,7 @@ export const ModalCardResourceFormat = styled(CardResourceFormat)`
 `;
 
 export const StyledGridContainer = styled(Grid)`
-  max-width: 480px;
+  max-width: 600px;
   text-align: center;
   margin-right: auto;
   margin-left: auto;
