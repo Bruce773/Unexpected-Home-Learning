@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import Paper from "@material-ui/core/Paper";
 import { BaseFont, tealGreen } from "globalStyles";
+import Grid from "@material-ui/core/Grid";
 
 export const CardWrapper = styled(Paper)<{ hasBorder?: boolean }>`
   padding-top: 8px;
@@ -39,7 +40,7 @@ export const CardResourceFormat = styled(BaseFont)`
 
 export const CardPricing = styled(BaseFont)`
   margin-top: 16px;
-  margin-left: 66%;
+  text-align: end;
   letter-spacing: 0.07em;
   font-weight: 500;
   text-transform: uppercase;
@@ -73,14 +74,13 @@ export const ModalCardSubtitle = styled(CardSubtitle)`
     margin-bottom: 25px;
     font-size: 1.4rem;
     overflow-wrap: break-word;
+    height: auto;
   }
 `;
 
 export const ModalCardPricing = styled(CardPricing)`
   & {
     display: inline;
-    margin-right: 30px;
-    margin-left: 0px;
   }
 `;
 
@@ -88,8 +88,18 @@ export const ModalCardResourceFormat = styled(CardResourceFormat)`
   & {
     display: inline;
     position: relative;
-    margin-right: 30px;
   }
+`;
+
+export const StyledGridContainer = styled(Grid)`
+  max-width: 480px;
+  text-align: center;
+  margin-right: auto;
+  margin-left: auto;
+  margin-bottom: 20px;
+  text-align: center;
+  margin-top: 20px;
+  margin-bottom: 30px;
 `;
 
 export const ModalCardCategories = styled(BaseFont)`

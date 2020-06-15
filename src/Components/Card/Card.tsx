@@ -11,12 +11,14 @@ import {
   ModalCardPricing,
   ModalCardResourceFormat,
   ModalCardCategories,
-  LinkBoxWrapper
+  LinkBoxWrapper,
+  StyledGridContainer,
 } from "Components/CardElements";
 import { _truncate } from "utilities";
 import Modal from "@material-ui/core/Modal";
 import Container from "@material-ui/core/Container";
 import useMediaQuery from "@material-ui/core/useMediaQuery";
+import Grid from "@material-ui/core/Grid";
 
 interface Props {
   title?: string;
@@ -35,7 +37,7 @@ export const Card: React.FC<Props> = ({
   pricing,
   embedlyHtml,
   resourceCategory,
-  resourceLink
+  resourceLink,
 }) => {
   const truncatedSubtitle = _truncate(subtitle, 60);
   const truncatedTitle = _truncate(title, 25);
@@ -57,19 +59,23 @@ export const Card: React.FC<Props> = ({
           <Container maxWidth="md">
             <ModalCardTitle>{title}</ModalCardTitle>
             <ModalCardSubtitle>{subtitle}</ModalCardSubtitle>
-            <div style={{ marginTop: "50px", marginBottom: "40px" }}>
-              <div style={{ display: "inline", marginBottom: "20px" }}>
+            <StyledGridContainer container>
+              <Grid xs={12} md={4}>
                 Format:{" "}
                 <ModalCardResourceFormat>
                   {resourceFormat}
                 </ModalCardResourceFormat>
+              </Grid>
+              <Grid xs={12} md={4}>
                 Pricing: <ModalCardPricing>{pricing}</ModalCardPricing>
+              </Grid>
+              <Grid xs={12} md={4}>
                 Category:{" "}
                 <ModalCardCategories>
                   {resourceCategory?.join(" • ")}
                 </ModalCardCategories>
-              </div>
-            </div>
+              </Grid>
+            </StyledGridContainer>
             {resourceLink ? (
               <>
                 <ModalCardPricing>Link: </ModalCardPricing>
