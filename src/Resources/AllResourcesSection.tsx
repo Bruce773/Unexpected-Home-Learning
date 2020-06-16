@@ -31,17 +31,19 @@ export const AllResourcesSection = () => {
             {sectionOneDown ? <ArrowDropUpIcon /> : <ArrowDropDownIcon />}
           </Button>
         </ExpansionPanelSummary>
-        <ExpansionPanelDetails>
-          <Grid container spacing={4}>
-            {generalResources?.map(({ ...props }) => {
-              return (
-                <Grid item xs={12} md={6}>
-                  <Card {...props} />
-                </Grid>
-              );
-            })}
-          </Grid>
-        </ExpansionPanelDetails>
+        {sectionOneDown && (
+          <ExpansionPanelDetails>
+            <Grid container spacing={4}>
+              {generalResources?.map(({ ...props }) => {
+                return (
+                  <Grid item xs={12} md={6}>
+                    <Card {...props} />
+                  </Grid>
+                );
+              })}
+            </Grid>
+          </ExpansionPanelDetails>
+        )}
       </ExpansionPanel>
       <SectionHeader>Elementary School</SectionHeader>
       <ExpansionPanel onChange={() => setSectionTwoDown(!sectionTwoDown)}>
@@ -51,17 +53,19 @@ export const AllResourcesSection = () => {
             {sectionTwoDown ? <ArrowDropUpIcon /> : <ArrowDropDownIcon />}
           </Button>
         </ExpansionPanelSummary>
-        <ExpansionPanelDetails>
-          <Grid container spacing={4}>
-            {elementaryResources?.map(({ ...props }) => {
-              return (
-                <Grid item xs={12} md={6}>
-                  <Card {...props} />
-                </Grid>
-              );
-            })}
-          </Grid>
-        </ExpansionPanelDetails>
+        {sectionTwoDown && (
+          <ExpansionPanelDetails>
+            <Grid container spacing={4}>
+              {elementaryResources?.map(({ ...props }) => {
+                return (
+                  <Grid item xs={12} md={6}>
+                    <Card {...props} />
+                  </Grid>
+                );
+              })}
+            </Grid>
+          </ExpansionPanelDetails>
+        )}
       </ExpansionPanel>
       <SectionHeader>Middle/High School</SectionHeader>
       <ExpansionPanel onChange={() => setSectionThreeDown(!sectionThreeDown)}>
@@ -71,15 +75,17 @@ export const AllResourcesSection = () => {
             {sectionThreeDown ? <ArrowDropUpIcon /> : <ArrowDropDownIcon />}
           </Button>
         </ExpansionPanelSummary>
-        <ExpansionPanelDetails>
-          <Grid container spacing={4}>
-            {middleAndHighResources?.map(({ ...props }) => (
-              <Grid item xs={12} md={6}>
-                <Card {...props} />
-              </Grid>
-            ))}
-          </Grid>
-        </ExpansionPanelDetails>
+        {sectionThreeDown && (
+          <ExpansionPanelDetails>
+            <Grid container spacing={4}>
+              {middleAndHighResources?.map(({ ...props }) => (
+                <Grid item xs={12} md={6}>
+                  <Card {...props} />
+                </Grid>
+              ))}
+            </Grid>
+          </ExpansionPanelDetails>
+        )}
       </ExpansionPanel>
     </>
   );
